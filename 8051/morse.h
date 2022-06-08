@@ -52,57 +52,57 @@ SC_MODULE(morse)
 		morse_library morse_input;
 		morse_input=A;
 		switch(morse_input){
-			case A:	
+			case A:				// .-
 					break;
-			case B: 
+			case B: 			// -...
 					break;
-			case C: 
+			case C: 			// -.-.
 					break;
-			case D: 
+			case D: 			// -..
 					break;
-			case E: 
+			case E: 			// .
 					break;
-			case F: 
+			case F: 			// ..-.
 					break;
-			case G: 
+			case G: 			// --.
 					break;
-			case H: 
+			case H: 			// ....
 					break;
-			case I: 
+			case I: 			// ..
 					break;
-			case J: 
+			case J: 			// .---
 					break;
-			case K: 
+			case K: 			// -.-
 					break;
-			case L: 
+			case L: 			// .-..
 					break;
-			case M: 
+			case M: 			// --
 					break;
-			case N: 
+			case N: 			// -.
 					break;
-			case O: 
+			case O: 			// ---
 					break;
-			case P: 
+			case P: 			// .--.
 					break;
-			case Q: 
+			case Q: 			// --.-
 					break;
-			case R: 
+			case R: 			// .-.
 					break;
-			case S: 
+			case S: 			// ...
 					break;
-			case T: 
+			case T: 			// -
 					break;
-			case U: 
+			case U: 			// ..-
 					break;
-			case V: 
+			case V: 			// ...-
 					break;
-			case W: 
+			case W: 			// .--
 					break;
-			case X: 
+			case X: 			// -..-
 					break;
-			case Y: 
+			case Y: 			// -.--
 					break;
-			case Z: 
+			case Z: 			// --..
 					break;
 			default:;
 		}
