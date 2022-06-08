@@ -67,7 +67,7 @@ int sc_main(int argc, char *argv[])
 		
 
 
-		sc_start(500, SC_NS);
+		sc_start(10000, SC_NS);
 			
 		sc_close_vcd_trace_file(Tf);
 

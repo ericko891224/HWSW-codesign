@@ -66,15 +66,18 @@ SC_MODULE(morse)
 			wait();
 		}
 		C_.write(0);
+		wait();
 		return true;
 	}
 
 	void behavior() {
 		int morse_input;
+
 		while(1){
 			// if (!B_.read()) {
 				cout << "in" << endl;
-			wait();
+			// wait();
+			C_.write(1);
 			cout<<"A: "<<A_.read()<<", B: "<<B_.read()<<", C: "<<C_.read()<<", D: "<<D_.read()<<"\n";			
 			morse_input=(int)A_.read();
 			switch(morse_input){
@@ -159,6 +162,7 @@ SC_MODULE(morse)
 						morse_encode({1, 1, 0, 0});
 						break;
 				default:
+						C_.write(0);
 						wait();
 						break;
 			}
