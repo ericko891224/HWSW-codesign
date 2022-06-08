@@ -1,0 +1,106 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>Readme file about floats</title>
+</head>
+<body bgcolor="#FFDE00">
+
+<h2>Readme file about floats</h2>
+<font size=-1>
+  Updated: 25/Okt/2001 [IOLW]<br>
+  Archived: $Revision: 1.4 $
+</font>
+<pre>
+			New float routines
+			------------------
+
+
+	A new include file has been introduced, iccfloat.h. The file
+	declares a couple of intrinsics that must be in the compiler
+	before using this new library:
+
+	signed char/signed short __dgetexp(float/double);
+		Extract the exponent from the float and return it. The
+		expression argument = 2^return-value * rest-of-double where
+		0.5 <= rest-of-double < 1.0 should hold. An example in C 
+		for a float:
+
+		union { float f; short arr[2]; ) fl; // arr[0] contains MSW */
+		short exp;
+
+		fl.f = argument;
+		exp = ((arr[0] & 0x7F80) >> 7) - 0x7E;
+		return (exp);
+
+		Note that no check if zero argument should be done.
+
+	float/double __dnormexp(float/double);
+		Normalize the argument to be in the range [0.5, 1.0[. The 
+		expression mentioned above should hold. An example in C
+		for a float:
+
+		union { float f; short arr[2]; ) fl; // arr[0] contains MSW */
+		short exp;
+		
+		fl.f = argument;
+		arr[0] &= 0x807F;
+		arr[0] |= 0x3F00;	/* set exp to 0x7E */
+		return (fl.f);
+
+		The libraries use the expression f = __dnormexp(f), so it
+		is best if this expression is optimized.
+
+		Note that no check if zero argument should be done.
+
+	float/double __daddexp(float/double arg,signed char/short exp);
+		Add the exp to the arguments exponent. An example in C
+		for a float:
+
+		union { float f; short arr[2]; ) fl; // arr[0] contains MSW */
+		short exp;
+		
+		fl.f = argument;
+		exp += ((arr[0] & 0x7F80) >> 7) - 0x7E;
+		arr[0] &= 0x807F;
+		arr[0] |= ((exp & 0xFF) << 7);
+		return (fl.f);
+
+		The libraries use the expression f = __daddexp(f,exp), so it
+		is best if this expression is optimized.
+
+		Note that no check if zero argument should be done or if
+		overflow or underflow is the result of the expression.
+
+	float/double fabs(float/double)
+		Should be made to an intrinsic, since almost all routines
+		use this instead of negating. The best way to do this, is to
+		simply clear the sign bit in the float/double.
+
+		The libraries use the expression f = fabs(f), so it
+		is best if this expression is optimized.
+
+
+	
+
+	The errno system has been incorporated in the routines.
+
+	Benchmarks on floats for the 8051 yields (cycles):
+
+	routine		originally	now	% (deleted)
+	-------		----------	---	_
+	sqrt		9800		3101	68%
+	atan		16000		9000	44%
+	asin (uses atan)
+	acos (uses asin)
+	tan		9200		6900	25%
+	sin		7500		4800	36%
+	cos (uses sin)
+	floor		1800		1350	25%
+	ceil (uses floor)
+	ldexp		8 (lying)	500	90% (gruesome)
+	exp		8500		6100	28%
+	exp10		18700		6400	66%
+	log		7700		4400	43%
+	log10 (uses log)
+	pow		18000		11000	39%
+</pre>

@@ -1,0 +1,322 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>Readme file for CS8051R</title>
+</head>
+<BODY bgColor=#ffde00>
+<A href="http://www.iar.com/"><IMG align=right border=0 height=83 src="IAR Systems.jpg" width=136></A>
+
+<h2>Readme file for CS8051R V5.52B</h2>
+<font size=-1>
+  Updated: 04/Dec/2001 [IOLW]<br>
+  Archived: $Revision: 1.11 $
+</font>
+
+<ul>
+    <li><a href="#important">Important information</a> </li>
+    <li><a href="#features">New features</a> </li>
+    <li><a href="#problems">Known problems</a> </li>
+    <li><a href="#pcorr">Program corrections</a> </li>
+    <li><a href="#misc">Miscellaneous</a> </li>
+    <li><a href="#history">Release history</a> </li>
+</ul>
+
+<h3><a name=important></a>Important information</h3>
+
+<ul>
+    <li><h4>ROM-Monitor and RISM in the same product</h4>
+        <p>This release of the CS8051R is a unification of the
+        old CW8051R and CW8051RI.</p>
+    </li>
+</ul>
+
+<ul>
+    <li><h4>Assembler source debugging not possible</h4>
+        <p>It is not possible to have debuging information on
+        assembler files. Be sure to turn off debugging
+        information all assembler files in your project.</p>
+    </li>
+</ul>
+
+<ul>
+    <li><h4>Device Description File (Interrupt simulation and SFR
+        Window)</h4>
+        <p>The Load device description file, -p, option will load
+        a text file into the CS8051. This description file can
+        contain information about SFRs and interrupt simulation.</p>
+        <p>If SFR information is loaded with this description
+        file, a SFR Window will be enabled. In this SFR Window
+        you can set and group different SFRs. If no SFR
+        information is provided, the SFR Window will be disabled.</p>
+        <p>If the interrupt information is provided with the
+        description file, the interrupt system will be enabled.
+        If interrupt information is missing, no interrupts can be
+        simulated by the CS8051.</p>
+    </li>
+</ul>
+
+<ul>
+    <li><h4>Choice of driver</h4>
+        <p>New session option '-d driverName' has been
+        implemented for choosing a particular driver (simulator,
+        ROM-Monitor etc.) if more than one is installed.<br>
+        <br>
+        R8051 - ROM-monitor driver <br>
+        S8051 - Simulator driver <br>
+        R8051I - RISM-monitor driver <br>
+        </p>
+    </li>
+    <li><h4>Passing session parameters</h4>
+        <p>The way of passing session parameters has been
+        modified so it is now possible to choose the C-SPY driver
+        and processor options every time a new file is loaded.</p>
+    </li>
+</ul>
+
+<ul>
+    <li><h4>RISM</h4>
+        <p>This is the RISM driver based on C-SPY for 80x51/8x931.
+        </p>
+    </li>
+</ul>
+
+<ul>
+    <li><h4>ROM-Monitor</h4>
+        <p>In this version of C-SPY, the ROM-monitor is supplied.
+        In order to control execution of your application from C-SPY,
+        a ROM-monitor must be PROMed or downloaded to the
+        evaluation board. Be sure to use the correct ROM-monitor
+        program for your board. ROM-monitor programs are provided
+        in directory \src\rom\MONxxx.a03. To program on-board
+        flash memory see Siemens C5xx Starter Kit. In the
+        following steps you will see how a program will be
+        compiled and linked to run with the ROM-monitor:</p>
+        <ol>
+            <li>Create a new project (Choose <strong>New</strong>...
+                in the File menu).</li>
+            <li>Enter the name of project, for example: proj1</li>
+            <li>Add the files \tutor\demo1.c and \tutor\dtwo1.c
+                to the project (Choose <strong>Files</strong>...
+                in the Project menu).</li>
+            <li>Check that your files are in the project tree in
+                the proj1.prj window.</li>
+            <li>Double click on demo1.c or dtwo1.c to open the
+                files in the editor for viewing.</li>
+            <li>Be sure the top node <strong>Debug</strong> of
+                the project tree is marked and then choose <strong>Options</strong>
+                from the Project menu. </li>
+            <li>Choose <strong>General</strong> in the Category
+                list, set the processor to 8XC51 and the memory
+                model to Large or Tiny.</li>
+            <li>Choose <strong>ICC8051</strong> in the category
+                list, select the <strong>Debug</strong> tab and
+                set Code added to statements to 3 NOP&#146;s.</li>
+            <li>Choose <strong>XLINK</strong> in the Category
+                list, select <strong>Library</strong> tab and
+                change the path to the .xcl linking file (See the
+                Linking files) for your board found in the
+                \config\ directory. Then select <strong>Output</strong>
+                tab and check Debug info with terminal I/O. </li>
+            <li>Choose <strong>C-SPY</strong> in the Category
+                list, and select the ROM-monitor driver (Be sure
+                that your evaluation board uses the right
+                settings. If not using COM1:9600,N,8,1 baud you
+                have to choose the proper mode when selecting the
+                ROM-monitor driver). </li>
+            <li>Press OK to leave the project options dialog box.</li>
+            <li>Compile and link the program by clicking on the <strong>Make</strong>
+                button.</li>
+            <li>Now start C-SPY by clicking on the <strong>C-SPY</strong>
+                button. Open Terminal I/O window.</li>
+            <li>To run the program at full speed click on <strong>Go</strong>.</li>
+            <li>Click on the <strong>Stop</strong> button to stop
+                execution.</li>
+        </ol>
+        <p>Note: If you are not starting C-SPY from the IAR
+        Embedded Workbench or if you start C-SPY without any
+        project opened, step 10 above is done by typing the
+        command line options in the <strong>Session Option</strong>
+        dialog box. This dialog box is displayed when opening a
+        debug file for downloading.</p>
+    </li>
+</ul>
+
+<ul>
+    <li><h4>Linking files</h4>
+        <p>In the \config directory you will find linking files
+        for the demo and evaluation board: <br>
+        &nbsp;&nbsp; <br>
+        <font size="3">Lnk517.xcl - Linking file for MCB-517
+        board 4800 baud<br>
+        Lnkem31.xcl - Linking file for Em board 4800 baud<br>
+        Lnk504.xcl - Linking file for C504 board 19200 baud @ 40
+        MHz, 9600 @ 20 MHz <br>
+        Lnk505.xcl - Linking file for C505 board 9600 baud @ 8
+        MHz <br>
+        Lnk515.xcl - Linking file for C515 board 9600 baud @ 10
+        MHz <br>
+        Lnk541.xcl - Linking file for C541 board 19200 baud @ 12
+        MHz <br>
+        </font><br>
+        </p>
+    </li>
+    <li><h4>Command line options</h4>
+        <p><font face="Courier New">-spCOM1:19200,N,8,1</font>
+        Sets baud rate for C504 board on 40 MHz <br>
+        or <br>
+        <font face="Courier New">-spCOM1:9600,N,8,1</font> Sets
+        baud rate for C504 board on 20 MHz <br>
+        <font face="Courier New">-spCOM1:4800,N,8,1</font> Sets
+        baud rate for MCB-517 and Em board </p>
+    </li>
+</ul>
+
+<ul>
+    <li><h4>Making your own monitor</h4>
+        <p>Included in the CS8051R is a project called Mon.prj.
+        This is a pre-configured project to create a ROM-Monitor
+        for one of the targets C504, C505, C515, MCB517, C541 or
+        EM31. Please refer to the <a href="u8051.pdf">8051 IAR
+        Embedded Workbench User Guide</a> for more information.</p>
+    </li>
+</ul>
+
+<ul>
+    <li><h4>How to setup the interupt vector table for the ROM-Monitor</h4>
+        <p>When the interrupt table is located in RAM the program
+        being debugged can install own interrupts when being
+        debugged. However not all ROM-Monitor boards are built
+        with this feature.</p>
+        <p>For those board having their interrupt table in ROM
+        the interrupt table can be initialized with links to a
+        mirror of the interrupt table that is located in RAM (called
+        jump table). The ROM-Monitor can be built using pre-configured
+        project (see previous point) a configuration file for the
+        ROM-Monitor (conf.s03) is included. The macros
+        BEGIN_INT_TABLE and VECTOR is used to initialize the
+        interrupt table when the file is being assembled. To
+        install a vector address search for the label <font
+        face="Courier New">reset_monitor_CONF</font> in the file
+        conf.s03 and edit the VECTOR macro like this:<br>
+        <font face="Courier New">VECTOR 0</font><br>
+        This are going to install a LJMP &lt;jmp_tbl_entry&gt;
+        into the interrupt table where &lt;jmp_tbl_entry&gt; is
+        the address to a unique entry in the jump table. The
+        macro also allocates the needed space in the jump table,
+        there is a distance of 8 bytes between each vector.</p>
+        <p>If a interrupt vector should be hard wired by the ROM-Monitor
+        use the VECTOR macro like:<br>
+        <font face="Courier New">VECTOR 1, &lt;address&gt;</font><br>
+        where 1 specifies that a LJMP &lt;address&gt; is added to
+        the interrupt table and &lt;address&gt; is the address to
+        the hard wired interrupt service routine. The result of
+        this is that the interrupt allways causes a jump to the
+        routine on &lt;address&gt; an the entry in jump table is
+        obsolete, however a slot of 8 bytes are still going to be
+        reserved in the jump table to preserve the alignment.</p>
+        <p>Note that:</p>
+        <ul>
+            <li>The symbol INTERRUPT_JUMP_TABLE must be defined
+                to enable the jump table feature.</li>
+            <li>The ROM-Monitor INTVEC segment is mapped to the
+                interrupt table and the ROM-Monitor JUMP_TABLE
+                segment is mapped to the jump table.</li>
+            <li>The number of VECTOR macro initializations that
+                should be done is equal to the number of
+                interrupts that are supported by the derivate.</li>
+            <li>The application to debug must map its INTVEC
+                segment to the same address as the ROM-Monitor
+                JUMP_TABLE segment.</li>
+        </ul>
+    </li>
+</ul>
+
+<h3><a name=features></a>New features</h3>
+
+<ul>
+    <li>None</li>
+</ul>
+
+<h3><a name=problems></a>Known problems</h3>
+
+<ul>
+    <li>Debug information can not be used for assembled code when
+        debugging with a ROM-Monitor. This beause the ROM-Monitor
+        debuggable code needs tree NOP:s between each statement
+        ant this is not added by the assembler.<br>
+        [8051DD0013]</li>
+</ul>
+
+<ul>
+    <li>The RISM driver (r8051i.cdr) does not work correctly with
+        INTEL 8xC51Fx Evaluation Board. </li>
+</ul>
+
+<h3><a name=pcorr></a>Program corrections</h3>
+
+<ul>
+    <li>None</li>
+</ul>
+
+<h3><a name=misc></a>Miscellaneous</h3>
+
+<ul>
+    <li>Nothing</li>
+</ul>
+
+<h3><a name=history></a>Release history</h3>
+
+<ul>
+    <li>5.52A<ul>
+            <li>Got internal error when tried to debug a assembler source file.</li>
+        </ul>
+    </li>
+</ul>
+
+<ul>
+    <li>5.51C<ul>
+            <li>Fixed an error in the licensing system while
+                running the ROM-Monitor under some regional
+                versions of MS-Windows.</li>
+        </ul>
+    </li>
+</ul>
+
+<ul>
+    <li>5.51A<ul>
+            <li>The files r00.h and r10.h was missed in the
+                previous release.<br>
+                [8051P0011]</li>
+        </ul>
+    </li>
+    <li>5.31A<ul>
+            <li>New GUI version 2.31A </li>
+            <li>The C-SPY macro language could generate wrong
+                result in complex expressions.<br>
+                [8051DT0012]</li>
+            <li>The file SWITCH.INC where missing in the previous
+                release.<br>
+                [8051P0008] </li>
+        </ul>
+    </li>
+</ul>
+
+<ul>
+    <li>5.21D<ul>
+            <li>New GUI (v2.10D) and Kernel (v2.10F) added. </li>
+        </ul>
+    </li>
+</ul>
+
+<ul>
+    <li>3.10A<ul>
+            <li>The first release of the ROM-monitor.<br>
+                </li>
+        </ul>
+    </li>
+</ul>
+
+<p><font size="2">Copyright 2001 IAR Systems. All rights reserved.</font>
+</p>
+</body>
+</html>

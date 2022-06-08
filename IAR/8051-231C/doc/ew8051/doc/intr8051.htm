@@ -1,0 +1,112 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>Readme file for the ICC8051 Intrinsic Library</title>
+</head>
+<body bgcolor="#FFDE00">
+
+<h2>Readme file for the ICC8051 Intrinsic Library V5.5</h2>
+<font size=-1>
+  Updated: 25/Okt/2001 [IOLW]<br>
+  Archived: $Revision: 1.3 $
+</font>
+
+<ul>
+    <li><a href="#important">Important information</a> </li>
+    <li><a href="#features">New features</a> </li>
+    <li><a href="#problems">Known problems</a> </li>
+    <li><a href="#misc">Miscellaneous</a> </li>
+    <li><a href="#history">Release history</a> </li>
+</ul>
+
+<h3><a name="important">Important information</a></h3>
+
+<ul>
+    <li><h4>About the intrinsic library</h4>
+        <p>The intrinsic library is entirely written in 8051
+        assembly language, except for functions that emulate C
+        functions. Currently, only C-SPY versions of the &quot;putchar&quot;
+        and &quot;getchar&quot; functions are written in assembly,
+        as well as the &quot;setjmp&quot; and &quot;longjmp&quot;
+        functions. The library modules are called L00, L01, etc.</p>
+    </li>
+</ul>
+
+<ul>
+    <li><h4>Contents of the intrinsic library</h4>
+        <p>The ICC8051 intrinsic library consists of these
+        assembler source files:</p>
+        <ul>
+            <li><b>L00.s03</b><br>
+                Binary/unary char &amp; int operations.</li>
+            <li><b>L00_2.s03</b><br>
+                Like L00.s03, but not for the ACALL library.</li>
+            <li><b>L01.s03</b><br>
+                Binary/unary long operations. </li>
+            <li><b>L01_2.s03</b><br>
+                Like L01.s03, but not for the ACALL library.</li>
+            <li><b>L02.s03</b><br>
+                Binary/unary float operations.</li>
+            <li><b>L03.s03</b><br>
+                Reserved.</li>
+            <li><b>L04.s03</b><br>
+                Bit field support.</li>
+            <li><b>L05.s03</b><br>
+                switch&quot; operations.</li>
+            <li><b>L06.s03</b><br>
+                setjmp&quot; &amp; &quot;longjmp&quot;.</li>
+            <li><b>L07.s03</b><br>
+                Reserved.</li>
+            <li><b>L08.s03</b><br>
+                Inline-routines like strcmp, etc. </li>
+            <li><b>L16.s03</b><br>
+                Binary/unary char &amp; int operations.</li>
+            <li><b>L17.s03</b><br>
+                Adressing support.</li>
+            <li><b>L17_2.s03</b><br>
+                Like L17.s03, but not for the ACALL library.</li>
+            <li><b>L18.s03</b><br>
+                Bank-switching support.</li>
+            <li><b>L20.s03</b><br>
+                Shortcuts only.</li>
+            <li><b>L20_2.s03</b><br>
+                Like L20.s03, but not for the ACALL library.</li>
+            <li><b>Debug.s03</b><br>
+                C-SPY support.</li>
+            <li><b>Debug_LJ.s03</b><br>
+                C-SPY support for longjump.</li>
+            <li><b>Recurse.s03</b><br>
+                Recursion handler (XLINK invoked).</li>
+        </ul>
+    </li>
+</ul>
+
+<h3><a name="features">New features</a></h3>
+
+<ul>
+    <li>None.</li>
+</ul>
+
+<h3><a name="problems">Known problems</a></h3>
+
+<ul>
+    <li>None.</li>
+</ul>
+
+<h3><a name="misc">Miscellaneous</a></h3>
+
+<ul>
+    <li>Nothing.</li>
+</ul>
+
+<h3><a name="history">Release history</a></h3>
+
+<ul>
+    <li>Nothing.</li>
+</ul>
+
+<p><font size="2">Copyright 2001 IAR Systems. All rights reserved.</font>
+</p>
+</body>
+</html>

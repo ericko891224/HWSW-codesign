@@ -1,0 +1,393 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>Readme file for CS8051</title>
+</head>
+<BODY bgColor=#ffde00>
+
+<h2>Readme file for CS8051 V5.52B</h2>
+<font size=-1>
+  Updated: 04/Dec/2001 [IOLW]<br>
+  Archived: $Revision: 1.12 $
+</font>
+
+<ul>
+    <li><a href="#important">Important information</a> </li>
+    <li><a href="#features">New features</a> </li>
+    <li><a href="#problems">Known problems</a> </li>
+    <li><a href="#pcorr">Program corrections</a> </li>
+    <li><a href="#misc">Miscellaneous</a> </li>
+    <li><a href="#history">Release history</a> </li>
+</ul>
+
+<p>For information about the generic components of the IAR C-SPY
+Intel 8051 Simulator, refer to the <a href="cwgui.htm">Readme
+file for IAR C-SPY Debugger</a><br>
+Examples on how to use the macro language to simulate different
+peripherals, refer to <a href="cs8051_ex.html">Example of macro
+file usage</a></p>
+
+<h3><a name=important></a>Important information</h3>
+
+<ul>
+    <li><h4>Device description file (Interrupt simulation and SFR
+        Window)</h4>
+        <p>The Load device description file, -p, option will load
+        a text file into the CS8051. This description file can
+        contain information about SFRs and interrupt simulation.</p>
+        <p>If SFR information is loaded with this description
+        file, a SFR Window will be enabled. In this SFR Window
+        you can set and group different SFRs. If no SFR
+        information is provided, the SFR Window will be disabled.</p>
+        <p>If the interrupt information is provided with the
+        description file, the interrupt system will be enabled.
+        If interrupt information is missing, no interrupts can be
+        simulated by the CS8051.</p>
+    </li>
+</ul>
+
+<ul>
+    <li><h4>Choice of driver</h4>
+        <p>New session option '-d driverName' has been
+        implemented for choosing a particular driver (simulator,
+        ROM monitor etc.) if more than one is installed.</p>
+    </li>
+</ul>
+
+<ul>
+    <li><h4>Passing session parameters</h4>
+        <p>The way of passing session parameters has been
+        modified, so that it is now possible to choose the C-SPY driver
+        and processor options every time a new file is loaded.</p>
+    </li>
+</ul>
+
+<h3><a name=features></a>New features</h3>
+
+<ul>
+    <li>The simulator now supports other bank switch registers than P1.</li>
+</ul>
+
+<h3><a name=problems></a>Known problems</h3>
+
+<ul>
+    <li>C-SPY sometimes crashes when downloading a UBROF file that contains banked code.<br>
+    [EW10090]</li>
+</ul>
+
+
+<ul>
+    <li>Changing the latency when ordering an interrupt does not
+        have any effect.<br>
+        [8051DD0012]</li>
+</ul>
+
+<ul>
+    <li>In the source window, the assembler code for the first C
+        statement in a function is put before the C statement
+        source code when using the dissassembly option.<br>
+        [8051DT0023]</li>
+</ul>
+
+<ul>
+    <li>The symbol name for 16-bit symbols does not show up in the source
+        window when using dissassembly option. For example:<br>
+        <font face="Courier New">SYMBOL16 EQU 30000<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MOV
+        DPTR,#SYMBOL16<br>
+        </font>Here, the <font face="Courier New">SYMBOL16</font>
+        will not be displayed correctly in the source window.<br>
+        [8051DT0022]</li>
+</ul>
+
+<ul>
+    <li>The watch window does not display the correct information
+        for local <font face="Courier New">float</font> variables
+        when the <font face="Courier New">-z9</font> optimization is used.<br>
+        [8051DT0015]</li>
+</ul>
+
+<h3><a name=pcorr></a>Program corrections</h3>
+
+<ul>
+    <li>None</li>
+</ul>
+
+
+<h3><a name=misc></a>Miscellaneous</h3>
+
+<ul>
+    <li>Nothing</li>
+</ul>
+
+<h3><a name=history></a>Release history</h3>
+
+    <li>5.51C<ul>
+<ul>
+    <li>Fixed an error in the licensing system while running the simulator
+    under some regional versions of MS Windows.
+	</li> 
+</ul>
+</ul>
+
+    <li>5.51A<ul>
+
+<ul>
+    <li>The *.DDF file box could not contain a space in a
+        directory name.<br>
+        [8051DD0011]</li>
+</ul>
+
+<ul>
+    <li>The .mac files in the tutorial directory was incorrect.<br>
+        [8051DD0010]</li>
+</ul>
+
+<ul>
+    <li>Trying to add an interrupt in the Interrupt dialog box when
+        no DDF file was selected, caused a C-SPY Fatal Error.<br>
+        [8051DD0009]</li>
+</ul>
+
+<ul>
+    <li>You will not get any information if you drag and drop a
+        bit-variable into the Memory window.<br>
+        [8051DD0008]</li>
+</ul>
+
+<ul>
+    <li>The bank switch register for C-SPY was fixed at address 0x90
+        (P1). The bank switch register address can now be changed
+        by specifying <font face="Courier New">-D?BANK_REGISTER</font>
+        when linking. Example: use <font face="Courier New">-D?BANK_REGISTER=A0</font>
+        to make P2 the bank switch register.<br>
+        [8051DT0024]</li>
+</ul>
+
+<ul>
+    <li>A reentrant_idata function is using the IDATA stack. C-SPY
+        believed that the reentrant_idata function was using the
+        XDATA stack.<br>
+        [8051DT0021]</li>
+</ul>
+
+<ul>
+    <li>SFR were treated as bit. They are now treated as unsigned
+        char.<br>
+        [8051DT0014]</li>
+</ul>
+
+<ul>
+    <li>An internal error occured when expanding a PDATA pointer
+        in the Watch window.<br>
+        [8051DT0013]</li>
+</ul>
+</li>
+</ul>
+<ul>
+    <li>3.30B<ul>
+            <li>The C-SPY macro language could generate the wrong
+                result in complex expressions.<br>
+                [8051DT0012]</li>
+            <li>The CS8051 is released with C-SPY GUI version 2.31A.</li>
+        </ul>
+    </li>
+</ul>
+
+<ul>
+    <li>3.30A<ul>
+            <li>The Memory window acted strangely when scrolling
+                up and down.<br>
+                [8051DD0005]</li>
+            <li>In some rare situations, the Watch window did not
+                show the variables in the correct memory space.<br>
+                [8051DD0004][8051DT0009]</li>
+            <li>The breakpoint on the SP (address 0x81) was not
+                triggered when assembler code executed.<br>
+                [8051DD0003]</li>
+            <li>The CS8051 crashed during file download from Windows 98.<br>
+                [8051DT0011]</li>
+            <li>No error or warning was given when trying to set
+                a non valid breakpoint in the macro language.<br>
+                [EW265]</li>
+            <li>Setting a breakpoint at bits in the macro
+                language generated an Internal Error.<br>
+                [EW264]</li>
+        </ul>
+    </li>
+</ul>
+
+<ul>
+    <li>3.20A<ul>
+            <li>The tutorial and example files are moved to the .\8051\TUTOR\
+                directory. There is a file called EXAMPLE.TXT
+                that describes the CS8051 examples in the .\8051\CS8051
+                directory.</li>
+            <li>The interrupt vectors 'serial port ri' and 'serial
+                port ti' used to set the wrong interrupt flag in
+                the SCON SFR.<br>
+                <br>
+                See table below:<p><font face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Interrupt vector name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                bit in SCON<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                -----------------------------------------<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                serial port ti&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                RI<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                0x23 ti&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                TI<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                0x0023 ti&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                TI<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                serial port ri&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                TI<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                0x23 ri&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                RI<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                0x0023 ri&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                RI</font></p>
+                <p><font face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                This is now changed to:</font></p>
+                <p><font face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Interrupt vector name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                bit in SCON<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                -----------------------------------------<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                serial port ti&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                TI<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                0x23 ti&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                TI<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                0x0023 ti&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                TI<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                serial port ri&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                RI<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                0x23 ri&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                RI<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                0x0023 ri&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                RI</font></p>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<ul>
+    <li>3.20C<ul>
+            <li>Memory Fill could only fill the memory with zero
+                (0) or one (1). Now, Memory Fill can use any byte
+                value.<br>
+                [8051DD0007]</li>
+            <li>The banked memory model would crash in some rare
+                cases.<br>
+                [8051DT0010]</li>
+        </ul>
+    </li>
+</ul>
+
+<ul>
+    <li>3.20B<ul>
+            <li>When displaying word or long word in the Memory
+                window, the wrong byte order was used.<br>
+                [8051DD0006]</li>
+            <li>The scroll bar in the Memory window did not work
+                as it should.<br>
+                [8051DD0005]</li>
+            <li>In certain cases the Watch window could show the
+                wrong memory location for variables.<br>
+                [8051DD0004]</li>
+            <li>When setting a break point on the SP, that BP
+                was not hit when executing a PUSH or POP
+                instruction.<br>
+                [8051DD0003]</li>
+        </ul>
+    </li>
+</ul>
+
+<ul>
+    <li>3.20A<ul>
+            <li>A fatal error could occur in the banked memory model.<br>
+                [8051DT0008][8051DT0007]</li>
+            <li>After running the code in CS8051, the step-breakpoints
+                could be set at the wrong addresses. This would
+                have the effect that, after executing the 'RUN'
+                command, stops would occur before the end of the
+                program.<br>
+                [8051DD0002]</li>
+        </ul>
+    </li>
+</ul>
+
+<ul>
+    <li>3.10A<ul>
+            <li>The simulator could generate an interrupt, even if
+                the EA flag in the IE sfr was cleared.<br>
+                [8051DT0006]</li>
+            <li>Memory IDATA could not display addresses in the
+                range 0x80 to 0xFF in the memory window.<br>
+                [8051DD0001]</li>
+        </ul>
+    </li>
+</ul>
+
+<ul>
+    <li>2.02B<ul>
+            <li>The SIO interrupt (vector 0x23) is now possible
+                to set from the simulator. In the Control menu,
+                select Interrupt. In the Vector box you can
+                write 0x23 RI to generate an SIO receive interrupt,
+                or 0x23 TI to generate an SIO transmit interrupt.
+                See the table in section 2.5.</li>
+        </ul>
+    </li>
+</ul>
+
+<ul>
+    <li>2.02A<ul>
+            <li>The complex data breakpoint system did not hit
+                the breakpoints as it should.<br>
+                [8051DT0004]</li>
+        </ul>
+    </li>
+</ul>
+
+<ul>
+    <li>2.02A<ul>
+            <li>When User Reset was executed inside an interrupt
+                function, the simulator did not reset the
+                interrupt, and therefore ran like it was inside an
+                interrupt function.<br>
+                [8051DT0005]</li>
+            <li>Reading/writing to an SFR bit would not generate
+                a break, even if a breakpoint was set at that SFR.
+                Only bit 0 would be recognized properly. [8051DT0003]</li>
+            <li>The interrupt simulation assumed that the user
+                should clear the IE0, IE1, TF0, and TF1 using a
+                macro function when entering an interrupt
+                function. Now, the simulator clears the
+                corresponding bit when entering that interrupt
+                function.<br>
+                [8051DT0002]</li>
+            <li>The simulator did not check for SIO interrupts (RI
+                and TI in SCON). You cannot order an SIO
+                interrupt from the simulator, but, if RI or&nbsp;TI
+                are set, the simulator will recognize this and
+                generate an SIO interrupt.</li>
+        </ul>
+    </li>
+</ul>
+
+<ul>
+    <li><font size="2">Copyright 2001 IAR Systems. All rights
+        reserved.</font> </li>
+</ul>
+</body>
+</html>

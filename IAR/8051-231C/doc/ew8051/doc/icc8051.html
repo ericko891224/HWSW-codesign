@@ -1,0 +1,1607 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>Readme file for ICC8051</title>
+</head>
+<body bgcolor="#FFDE00">
+
+<h2>Readme file for ICC8051 V5.52B</h2>
+<font size=-1>
+  Updated: 04/Dec/2001 [IOLW]<br>
+  Archived: $Revision: 1.18 $
+</font>
+
+<ul>
+    <li><a href="#important">Important information</a> </li>
+    <li><a href="#new">New features</a> </li>
+    <li><a href="#problems">Known problems</a> </li>
+    <li><a href="#pcorr">Program corrections</a> </li>
+    <li><a href="#misc">Miscellaneous</a> </li>
+    <li><a href="#history">Release history</a> </li>
+</ul>
+
+<h3><a name=important></a>Important information</h3>
+
+<ul>
+    <li><strong>5.50x. Strict typechecking for ICC8051.<br>
+        </strong>The IAR 8051 compiler is now stricter (according
+        to the ISO/ANSI Standard) on assignment operations. Now,
+        all qualifiers on the right side of the assignment
+        operator must exist on the left side as well. Otherwise,
+        there is a risk that, for example, a const object may
+        become modified. Note that this new behavior also applies
+        to parameter passing and more complex assignments. Code
+        with inconsistent type declarations, that was compiled
+        without errors when a previous version of the compiler
+        was used, may now cause errors.<br>
+        <br>
+        Example:<br>
+        The following is now regarded as errors:<br>
+        <br>
+        <font face="Courier New">int const l = 5; <br>
+        int *p = &amp;l <br>
+        </font>Error[132]: Incompatible initializer<br>
+        <br>
+        Correct:<br>
+        <font face="Courier New">int const l = 5;<br>
+        const int *p = &amp;l //const declaration is needed here</font>
+    </li>
+</ul>
+
+<ul>
+    <li><strong>5.21B. PDATA</strong><br>
+        If you do not use PDATA memory and want to use the P2 sfr,
+        you should remove the line &quot;MOV P2,DPH&quot; in
+        cstartup.s03. This line sets up the page where PDATA is
+        located in XDATA memory. </li>
+</ul>
+
+<ul>
+    <li><strong>5.20A. Preprocessor</strong><br>
+        The preprocessor is new, and works a bit
+        differently than the old preprocessor. It now adheres
+        more closely to the ANSI C standard. <p>New options:</p>
+        <p>-K<br>
+        Enable C++ comments. Enables comments in C++ style, i.e. a comment
+	is introduced by // and extends to the end of
+        the line. Normally, for compatibility, the compiler does
+        not accept C++ style comments. If your source includes C++
+        style comments, you must use the -K option for them to be accepted.</p>
+        <p>-X<br>
+        Describe C declarations. Displays an English description
+        of each C code declaration in the file. To obtain English
+        descriptions of the C code declarations, to aid the
+        investigation of error messages, you must use the -X
+        option.</p>
+        <p>-n file <br>
+        Generate preprocessor output on: &lt;file&gt;&lt;.i&gt;</p>
+        <p>-Nprefix<br>
+        Generate preprocessor output on:
+        &lt;prefix&gt;&lt;source&gt;&lt;.i&gt;</p>
+    </li>
+</ul>
+
+<ul>
+    <li><strong>New C library functions</strong><br>
+        These functions were not included in V5.12 and earlier: <p>BSEARCH.C
+        QSORT.C STRERROR.C STRTOK.C STRXFRM.C</p>
+        <p>Changed C library functions.<br>
+        The functions below are changed compared to V5.12 and
+        earlier, mainly due to the fact that the float routines
+        and the heap have been optimized.</p>
+        <p>ACOS.C ASIN.C ATAN.C ATAN2.C CEIL.C COS.C COSH.C EXP.C
+        EXP10.C FABS.C FLOOR.C FMOD.C FREE.C FREXP.C HEAP.C LDEXP.C
+        LOG.C LOG10.C MALLOC.C MODF.C POW.C PRINTF.C RAND.C
+        REALLOC.C SATAN.C SIN.C SINH.C SINUS.C SQRT.C SRAND.C
+        STRTOD.C STRTOL.C STRTOUL.C TAN.C TANH.C TOLOWER.C
+        TOUPPER.C </p>
+    </li>
+</ul>
+
+<ul>
+    <li><strong>Intrinsic library functions</strong><br>
+        The manual does not state that in addition to the macro
+        functions the following functions are decoded by the
+        code generator to generate fast and also reentrant code. Note
+        that this requires that the proper .H file is included. <p>STDLIB.H:
+        abs() fabs()labs()<br>
+        </p>
+    </li>
+    <li><strong>Support off multiple DPTRs in the libraries</strong><p>General:<br>
+        In the future any string operation (STRxxx, MEMxxx) may
+        use the multiple DPTRs on XDATA and code memory. With ICC8051
+        v5.20 the following functions may use multiple DPTRs in
+        XDATA or code memory.</p>
+        <p>MEMCHR MEMCMP MEMCPY MEMMOVE<br>
+        STRCAT STRCMP STRCOLL STRCPY STRCSPN STRNCAT STRNCMP
+        STRNCPY STRPBRK STRSPN STRSTR STRTOK STRXFRM</p>
+        <p>In order to use the facilities of different chips you
+        have to include target specific libraries in the project:</p>
+        <p>1. Find out which library you want to include.<br>
+        2. Place the library name on the line before the default
+        library in the link-file (.xcl).<br>
+        3. Link the project with this new link-file.</p>
+        <p><u>Siemens SAB 8XC517:</u><br>
+        We now support the multiple DPTRs in the 8XC517 chip.
+        This means that some of our library functions such as
+        strcmp and memcmp can take advantage of the multiple
+        DPTRs and produce more efficient code.</p>
+        <p>The implementation is that the library uses a pair of
+        DPTRs, i.e. flips the low bit in sfr DPSEL (0x92) to get
+        hold of the other DPTR. At reset of the chip, the lower 3
+        bits of DPSEL are set to 0, and this will force the
+        libraries to use DPTR 0 and 1. You can change this by
+        setting the sfr DPSEL to another DPTR pair.</p>
+        <p>In order to get support for the 8XC517 chip you have
+        to include one or more 517 libraries. There are three
+        different additional libraries for the 8XC517 chip, CL517.R03,
+        CL517I.R03 and CL517STR.R03.</p>
+        <p>Name Description:<br>
+        CL517.R03 Not interruptable integer, long and float
+        arithmetic library.</p>
+        <p>CL517I.R03 Interruptable integer, long and float
+        arithmetic library.</p>
+        <p>CL517STR.R03 String operations that use 8XC517
+        multiple DPTRs.</p>
+        <p><u>Dallas Semiconductor DS80C320:<br>
+        </u>We now support the dual DPTRs in the 80C320 chip. This
+        means that some of our library functions such as strcmp
+        and memcmp can take advantage of the multiple DPTRs and
+        produce more efficient code.</p>
+        <p>In order to get support for the 8XC320 chip you have
+        to include the 320 library. This is named CL320STR.R03.</p>
+        <p>Name Description:<br>
+        CL320STR.R03 String operations that use 8XC320 multiple
+        DPTRs.</p>
+    </li>
+</ul>
+
+<ul>
+    <li><strong>SMALL REENTRANT function call</strong> <p>Syntax:
+        <font face="Courier New">storage-class idata_reentrant
+        function _declarator</font></p>
+        <p>Description:<br>
+        The compiler now supports a SMALL REENTRANT function call.
+        This means that the software stack is placed in the idata
+        memory.</p>
+        <p>Pragma:<br>
+        Syntax: <font face="Courier New">#pragma function=reentrant_idata</font></p>
+        <p>Description: Use the reentrant_idata pragma to give
+        functions a simulated stack in idata.</p>
+        <p>User_error 154 is now reported with:<br>
+        &quot;returning bit is not allowed in reentrant function&quot;<br>
+        &quot;only XDATA allowed as local memory attribute in
+        reentrant function&quot;<br>
+        &quot;only idata allowed as local memory attribute in reentrant_idata
+        function&quot;</p>
+    </li>
+</ul>
+
+<ul>
+    <li><strong>About the compiler preprocessor directive overlay</strong>
+        <p>The preprocessor directive overlay is used to control
+        how the overlay of function parameters and local
+        variables should be done. The default mode for overlay (can
+        be forced by <font face="Courier New">#pragma overlay=default</font>)
+        is to leave the decision on wether to overlay function
+        parameters and local variables to XLINK (see also xlink
+        option -a). The default mode for the linker is to use the
+        static overlay method. Static overlay means that function
+        parameters and auto variables are located in a static
+        memory area (segment <font face="Courier New">C_ARGD</font>)
+        that is shared among all functions on the same calling
+        depth.</p>
+        <p>When overlay is off the function parameters (that are
+        not in register) and auto variables for function on the
+        same calling depth is mapped into separate memory slots (note
+        that they are not located on stack).</p>
+        <p>When <font face="Courier New">#pragma overlay=off</font>
+        is given the overlay will be off for the next function in
+        turn to be compiled and will be off until the end of
+        module (c file) or until a <font face="Courier New">#pragma
+        overlay=default</font> is reached.</p>
+    </li>
+</ul>
+
+<ul>
+    <li><strong>Notes</strong><br>
+        Note that a pointer is NULL if the address-bytes are zero.
+        The address-bytes are the lower two bytes for an XDATA or
+        code pointer and the lowest byte for an idata or PDATA
+        pointer. This means that an element that a pointer is
+        pointing to cannot be placed at address zero in any
+        memory.<br>
+        <br>
+        Include file for Dallas 80C320, 80C520, and 80C530
+        derivatives is included.<br>
+        <br>
+        Note that the TINY51 is not made to work in the banked
+        memory model. To make it work in the banked model you
+        have to change the size of the function pointers in the
+        assembler source.<br>
+        <br>
+        Note that the TINY51 has no support for the reentrant
+        stack in task-switches.<br>
+        <br>
+        Note that when changing the reentrant stack pointer (done
+        when pushing parameters or at the entrance and exit of a
+        reentrant C function) you have to safe-guard against an
+        interrupt. The way it is done in the library is to write
+        the new stack pointer so that if an interrupt occurs no
+        more than 256 bytes of reentrant stack will be wasted.
+        If you can have several stacked interrupts each with a
+        reentrant interrupt function or calling a reentrant
+        function, or you have an OS system with lots of processes
+        that all are reentrant, then this approach to safe-guard
+        the stack pointer might waste to much reentrant stack.
+        There is now a small library, move_xsp.r03, that safe-guards
+        the change of the stack pointer by disabling interrupts
+        instead. To use it, you have to either replace move_xsp
+        into the choosen library by using xlib, or put the
+        move_xsp file in front of the library in the linker
+        command file (.xcl).<br>
+        <br>
+        Note that all C source must be recompiled with the new
+        compiler!<br>
+        <br>
+        UBROF from the linker can be incompatible with Debuggers/emulators
+        UBROF loader. If this is the case try to use the option -Y#
+        together with -Fdebug in the linker to get the old style
+        of UBROF.<br>
+        <br>
+        An interrupt-function using a directive compiled with register-bank
+        dependent code flag enabled (<font face="Courier New">-h</font>)
+        cannot call any other function.</li>
+</ul>
+
+<h3><a name=new></a>New features</h3>
+
+<ul>
+    <li>The optimization of function stack frames has been re-written and is
+    now doing a better job compared to previous versions.</li>
+</ul>
+
+<h3><a name=problems></a>Known problems</h3>
+
+<ul>
+    <li>The comparison of two 16 bit values stored in pdata memory goes wrong if assignment
+    of the RHS comparison variable occurs just before the comparison statement. Example:<br>
+    <tt>pdata_iVal1 = iVal1;</tt><br>
+    <tt>pdata_iVal2 = iVal2;</tt><br>
+    <tt>if (pdata_iVal1 == pdata_iVal2)</tt><br>
+    [EW10187]<br>
+    To avoid this, make the assigment of the RHS comparison variable before the assignment of
+    the LHS comparison variable. Example:
+  <tt>pdata_iVal2 = iVal2;</tt><br>
+  <tt>pdata_iVal1 = iVal1;</tt><br>
+  <tt>if (pdata_iVal1 == pdata_iVal2)</tt></li>
+</ul>
+
+<ul>
+    <li>A statement like:<br>
+    <tt>*chPtr = (char)(int)(*iPtr & 0x00ff);</tt><br>
+    Generates an internal error.<br>
+    [EW10152]<br>
+    To avoid this rewrite such a statement into:<br>
+    <tt>*chPtr = (char)((int)*iPtr & 0x00ff);</tt>
+    </li>
+</ul>
+
+<ul>
+    <li>The compiler loses track of parameter size when passing
+    a bitfield structure to a function that takes a bitfield
+    structure as parameter.<br>
+    [8051C0210]</li>
+</ul>
+
+<ul>
+    <li>A bit variable can not index an array.<br>
+    [8051C0208]</li>
+</ul>
+
+<ul>
+    <li>A structure of bitfields inside a union does not work in some rare situations.<br>
+    [8051C0207]</li>
+</ul>
+
+<ul>
+    <li>Sometimes postfix increment operator applied to a function parameter
+    generates an internal error. This can occur when using size optimization
+    on small or medium memory models.<br>
+    [8051C0205]</li>
+</ul>
+
+<ul>
+    <li>The compiler sometimes generates an internal error when incrementing
+    a xdata pointer with the "+=" operator.<br>
+    [8051C0204]</li>
+</ul>
+
+<ul>
+    <li>The operator "<<" operator does not work when using the MDU libraries
+    with 8XC517 (-v1).<br>
+    [8051C0203]</li>
+</ul>
+
+<ul>
+    <li>The assembler output from the compiler is incorrect for
+        "or" assign expressions and "and" assign expressions that
+        contain an adress as the second parameter. Example:<br>
+        <font face="Courier New">char_val1 |= (char)@&amp;char_val2;</font><br>
+        will result in the assembler statement:<br>
+        <font face="Courier New">ORL char_val1,#</font><br>
+        i.e. the label char_val2 will be missed. This problem is
+        also seen in the list file when generating a list file
+        that includes mnemonics.<br>
+        [8051C0202]</li>
+</ul>
+
+<ul>
+    <li>A function call like:<br>
+        <font face="Courier New">((long (code *) (int, int, int))
+        0x8000) (1, 2, 3);</font><br>
+        results in an internal error.<br>
+	[8051C0201]<br>
+        To avoid this use:<br>
+        <font face="Courier New">((void (code *) (char, char,
+        char)) 0x8000) (1, 2, 3);<br>
+        </font>if possible. In other case use:<br>
+        <font face="Courier New">typedef void (* funcPtrType)(int,
+        int, int);<br>
+        funcPtrType funcPtr = (funcPtrType)0x8000;<br>
+        :<br>
+        :<br>
+        (*funcPtr)(1,2,3);<br>
+        </font>Note: This workaround will cause the compiler to
+        generate more code than the first workaround.</li>
+</ul>
+
+<ul>
+    <li>A structure access like:<br>
+        <font face="Courier New">struct_ptr[uint_val].elem1 =
+        ulong_val - struct_ptr[uint_val].elem1;<br>
+        struct_ptr[uint_val].elem2 = ulong_val - struct_ptr[uint_val].elem2;<br>
+        </font>results in an internal error.<br>
+        [8051C0200]<br>
+        To avoid this use an unsigned long variable as index
+        variable in the array of structs.</li>
+</ul>
+
+<ul>
+    <li>When the location of a global variable is stored in
+        register and that location is used a several of times in
+        an expression the compiler fails to store back the global
+        variable, when optimizing for size. Example:<br>
+        <font face="Courier New">uint_val = char_val ^ (uint_val
+        &gt;&gt; CONST_VAL);<br>
+        uint_val = (char)uint_val ^ (uint_val &gt;&gt; CONST_VAL);<br>
+        return;<br>
+        uint_val</font> is stored in a register, and
+        the uint_val that is used in the second expression will
+        not cause <font face="Courier New">uint_val</font> to be
+        stored in memory.<br>
+        [8051C0196]</li>
+</ul>
+
+<ul>
+    <li>The code:<br>
+        <font face="Courier New">#define STR_ACC (*(struct_containing_the_array_of_structs*)
+        CONS_VAL1)<br>
+        STR_ACC.array_of_structs[uchar_val].member_that_is_struct.uchar_val1
+        = CONST_VAL2;<br>
+        STR_ACC.array_of_structs[uchar_val].member_that_is_struct.uchar_val2
+        = CONST_VAL2;<br>
+        </font>generates an internal error. <br>
+        [8051C0194]<br>
+        To avoid this write:<br>
+        <font face="Courier New">struct_containing_the_array_of_structs*
+        str_ptr;<br>
+        str_ptr = &amp;STR_ACC.Error_array[ErrorIndex];<br>
+        str_ptr-&gt;member_that_is_struct.uchar_val1 = CONST_VAL2;<br>
+        str_ptr-&gt;member_that_is_struct.uchar_val2 = CONST_VAL2;<br>
+        </font>instead.</li>
+</ul>
+
+<ul>
+    <li>Multiple assigment of bit variables inside an if
+        statement does not work. Example:<br>
+        <font face="Courier New">if (!bit_var1 || (bit_var2 ? !bit_var3
+        &amp;&amp;<br>
+        ((bit_var4 = 0),(bit_var3 = 1)) :<br>
+        !bit_var4 &amp;&amp; ((bit_var3 = 0),(bit_var4 = 1))))<br>
+        </font>The compiler does not generate the code to assign
+        bit_var4 and bit_var3. <br>
+        [8051C0186] Avoid this by writing if statements that does
+        not include multiple assigments.</li>
+</ul>
+
+<ul>
+    <li>The expression:<br>
+        <font face="Courier New">uint_val1 = ((uchar_2array[uint_val2][CONST_VAL1]
+        &amp; CONST_VAL2) &lt;&lt; CONST_VAL3)<br>
+        </font>generates an Internal error. <br>
+        [8051C0179]<br>
+        This can be avoided by declaring either int_val1 or
+        uint_val2 as a unsigned long. </li>
+</ul>
+
+<ul>
+    <li>The statement:<br>
+        <font face="Courier New">while(union_of_int_and_bitfield_struct_arr[ptr-&gt;int_val1].int_val2){}<br>
+        </font>generates an internal error for size optimization
+        level less than 6. <br>
+        [8051C0178].<br>
+        This can be avoided by using a size optimization level
+        greater than or equal to 6. </li>
+</ul>
+
+<ul>
+    <li>An array in IDATA memory might cause an Internal Error. <br>
+        [8051C0147] </li>
+</ul>
+
+<ul>
+    <li>Wrong code generated for small memory model and other
+        memory models with high optimization option when many
+        binary operations are involved on the same variable.<br>
+        [8051C0136] </li>
+</ul>
+
+<ul>
+    <li>For code like: <br>
+        <font face="Courier New">unsigned long l;<br>
+        typedef struct { <br>
+        unsigned char * p;<br>
+        } stype;<br>
+        stype s = { &amp;((unsigned char *)&amp;l)[2] };</font><font
+        face="Times New Roman"><br>
+        </font>the &quot;Error[133]: Constant value required&quot;
+        is generated. This can be avoided with the following
+        construction:<font face="Courier New"><br>
+        union {<br>
+        unsigned long l;<br>
+        unsigned char a[4];<br>
+        }u;<br>
+        typedef struct { unsigned char * p; } stype;<br>
+        stype s = { (unsigned char *)&amp;(u.a[2]) };</font><br>
+        [8051C0128]</li>
+</ul>
+
+<ul>
+    <li>In an expression where the same pointer to a structure is
+        used more than once you might get an internal error.<br>
+        [8051C0077]<br>
+        A work around to this problem should be to use a
+        temporary variable in the expression instead of one of
+        the pointers. E.g: A line like<font face="Courier New"><br>
+        a.b[struct_ptr - c.d] = struct_ptr;</font><font
+        face="Times New Roman"><br>
+        </font>is changed to<font face="Courier New"><br>
+        temp = struct_ptr;<br>
+        a.b[struct_ptr - c.d] = temp;</font><font
+        face="Times New Roman"><br>
+        </font>where temp is declared as<font face="Courier New"><br>
+        struct my_struct *temp;</font><font
+        face="Times New Roman"><br>
+        </font>and c.d and struct_ptr is a pointer to struct
+        my_struct.</li>
+</ul>
+
+<ul>
+    <li>If you generate an assembler output file (-a or -A) from
+        the compiler you cannot use the predefined assembler
+        symbols as names/variables in the C source file. If you
+        do, you might get a name conflict in the assembler when
+        compiling the assembler file. <br>
+        [8051C0068] </li>
+</ul>
+
+<ul>
+    <li>The &quot;typedef bit nnnn&quot; does not work as it
+        should. Do not use this construction but rather the
+        keyword 'bit' or the &quot;define nnnn bit&quot;. <br>
+        [CFE1002]</li>
+</ul>
+
+<ul>
+    <li>Aggregate initialization is always from const segment
+          regardless of -Y option.<br>
+        [CFE0109]</li>
+</ul>
+
+<ul>
+    <li>The preprocessor replaces macros in include line. Example:<br>
+        <font face="Courier New">#define name &quot;John Smith&quot;<br>
+        #include &quot;name.h&quot;</font><br>
+        expands into:<br>
+        <font face="Courier New">#include &quot;&quot;John Smith&quot;.h&quot;<br>
+        </font>[CFE0100] </li>
+</ul>
+
+<ul>
+    <li>The parser erroneously disregards the integral promotion
+        when it is doing constant folding in an expression like:<br>
+        <font face="Courier New">(unsigned char)1 &lt;&lt; 8 | (unsigned
+        char)1<br>
+        </font>To avoid this write 257 instead. <br>
+        [CFE0091] </li>
+</ul>
+
+<ul>
+    <li>If you declare a pointer to a volatile object, the object
+        still will not be treated as a volatile and optimizations
+        might still occur. Example:<br>
+        <font face="Courier New">static char volatile *ch;<br>
+        static char byte; <br>
+        ch = (char *) 0x80; <br>
+        *ch = 8;<br>
+        byte = *ch; NOTE: optimization may be done on this line.<br>
+        </font>[CFE0088]<br>
+        To avoid this declare ch as a volatile char variable,
+        place it in a separate segment and link this segment to
+        the desired address, in this case 0x80. </li>
+</ul>
+
+<ul>
+    <li>For a declaration: volatile char arr[20]; The expression
+        &amp;arr drops the volatile attribute. <br>
+        [CFE0087] </li>
+</ul>
+
+<ul>
+    <li>The '-T' option changes the order of a C source line and
+        the associated assembler lines. <br>
+        [CFE0083] </li>
+</ul>
+
+<ul>
+    <li>Expressions like switch { case 3:{} case 6: f(); }
+        deletes the case 6: statement.<br>
+        [CFE0075] </li>
+</ul>
+
+<ul>
+    <li>Expressions like if (&amp;1) or if (&amp;5.0) doesn't
+        give an error. <br>
+        [CFE0074] </li>
+</ul>
+
+<ul>
+    <li>Intrinsic functions that returns via a hidden object may
+        in some more complex situations generate corrupt
+        expression trees.<br>
+        [CFE0073] </li>
+</ul>
+
+<ul>
+    <li><font face="Courier New">#if 1</font> without an ending <font
+        face="Courier New">#endif</font> does not generate a
+        warning. <br>
+        [CFE0072] </li>
+</ul>
+
+<ul>
+    <li>If nothing is returned from a function that should return
+        a union then sometimes a GPF is the result.<br>
+        [CFE0071] </li>
+</ul>
+
+<ul>
+    <li>The question mark (?) operator does not work in
+        connection with a struct. <br>
+        [CFE0054] </li>
+</ul>
+
+<ul>
+    <li>Expression that results in void from a logical expression
+        gives an internal error. Example: <font
+        face="Courier New">(void)(5 || x)</font> <br>
+        [CFE0053] </li>
+</ul>
+
+<ul>
+    <li>An internal error is generated if a preprocessor
+        directive is placed within another preprocessor directive.
+        It should generate a normal error message. [CFE0051] </li>
+</ul>
+
+<ul>
+    <li>The statements:<br>
+        <font face="Courier New">near int far *arr[2]; arr[1]++;<br>
+        </font>generates wrong code. <br>
+        [CFE0050] </li>
+</ul>
+
+<ul>
+    <li>Error integral promotion. The tmp1 and tmp2 below are
+        assigned different values. <br>
+        [CFE0045]<br>
+        <font face="Courier New">unsigned long tmp,tmp1,tmp2;<br>
+        tmp = 100*3600; /* tmp=360000 */<br>
+        tmp1 = (100*3600) + tmp;/* tmp1=720000 */ <br>
+        tmp2 = tmp + (100*3600);/* tmp2=392320 */</font> </li>
+</ul>
+
+<ul>
+    <li>Nested comments as /* /*/ without -C violates ANSI.<br>
+        [CFE0036] </li>
+</ul>
+
+<ul>
+    <li>Tentative definitions (K&amp;R A10.2) are misinterpreted
+        by the compiler. <br>
+        [CFE0033]<br>
+        To avoid this use complete declarations or use the &quot;extern&quot;
+        keyword for the incomplete declaration. Example:<br>
+        <font face="Courier New">extern char aa[]; /* Incomplete
+        declaration */<br>
+        char aa[25]; /* now completed */</font></li>
+</ul>
+
+<ul>
+    <li>The following type of expressions will give incorrect
+        code:<br>
+        <font face="Courier New">long_expr - unsigned_int_expr;<br>
+        </font>if unsigned_int_expr is more than a single
+        variable, e.g.:<br>
+        <font face="Courier New">l - ui * 2;<br>
+        </font>Work around: <font face="Courier New">l - (signed
+        int)(ui * 2); <br>
+        </font>[CFE0016] </li>
+</ul>
+
+<ul>
+    <li>(float) ~2 is wrongly folded<br>
+        [CFE0012]</li>
+</ul>
+
+<ul>
+    <li>If an expression is rewritten by the global optimizer and if
+          it appears only once in a basic block the alias information becomes
+          corrupt for that expression. This may cause illegal eliminations of
+          common sub-expression.<br>
+        [G0082]</li>
+</ul>
+
+<ul>
+    <li>Very large basic blocks with lots of assignments to
+        static or dynamic objects &quot;eat&quot; lots of memory
+        and compiling files with such code might take a *very*
+        long time. Insert some dummy labels in such code to avoid
+        the problem. This problem occurs at optimization level 4
+        or higher. <br>
+        [G0066] </li>
+</ul>
+
+<ul>
+    <li>Assignment to the first element in volatile arrays, unions
+          and structures generates an internal error in some cases when the
+          r-value (the expression to the right of the assignment operator) is
+          not a simple variable.<br>
+        [G0058]</li>
+</ul>
+
+<ul>
+    <li>An IE is generated for some types of nested dummy-switches.
+        Example:<br>
+        <font face="Courier New">void main(void)<br>
+        { <br>
+        switch(main_state)<br>
+        {<br>
+        case 0:<br>
+        switch(getkey())<br>
+        {<br>
+        }<br>
+        break;<br>
+        case 3:<br>
+        break;<br>
+        }<br>
+        }</font><br>
+        [G0027]</li>
+</ul>
+
+<ul>
+    <li>An empty conditional statement might cause an Internal
+        Error.</li>
+</ul>
+
+<ul>
+    <li>The usage of constant
+        pointers to volatile element does not treat the element
+        as a volatile.<br>
+        Example:<br>
+        <font face="Courier New">#define PTR (*(volatile char *)
+        0x01FFFF)</font><br>
+        </li>
+</ul>
+
+<h3><a name=pcorr></a>Program corrections</h3>
+<ul>
+    <li>Nothing </li>
+</ul>
+
+<h3><a name=misc></a>Miscellaneous</h3>
+
+<ul>
+    <li>Nothing </li>
+</ul>
+
+<h3><a name=history></a>Release history</h3>
+<ul>
+<li>5.52A</li>
+
+<ul>
+  <li>The library routine ?F_OPERATION_PR_L02 was wrongly implemented.
+  Almost all floating point arithmetic using PDATA went wrong since
+  ?F_OPERATION_PR_L02 is a very central point for those.<br>
+  [8051C0209]</li>
+</ul>
+
+<ul>
+
+    <li>The lowinit.c file was not in the product.<br>
+    [8051P0012] </li>
+
+</ul>
+</ul>
+
+<ul>
+<li>5.51D</li>
+
+<ul>
+    <li>Sometimes, the compiler needed a register that was
+        occupied, and had to push that register on the stack
+        before the use. One result of this was that the compiler
+        could report the internal error:<font face="Courier New"><br>
+        In function: nr_elems_voper_P20<br>
+        Diagnostic: Funny parst</font><br>
+        [8051C0211] </li>
+</ul>
+
+<ul>
+    <li>A bit comparison with one bit in register could go wrong.<br>
+        [8051C0206] </li>
+</ul>
+
+<li>5.51C</li>
+
+<ul>
+    <li>Fixed an error in the licensing system while running the
+        compiler under some regional versions of MS Windows. </li>
+</ul>
+
+<li>5.51B</li>
+
+<ul>
+    <li>Small changes while porting code to Unix.</li>
+
+    <li>The compiler crashed when using bit together with low optimizations (i.e. -z3 or -s3),
+    but not with higher optimizations (i.e. -z9 or -s9). This bug was introduced when fixing
+    the bug with number 8051C0169.<br>[EW10079]</li>
+
+</ul>
+
+<li>5.51A</li>
+
+<ul>
+    <li>Questionmark expressions in a return statement generated
+        the internal error: 'In function: make_arith - B00'.
+        Example:<br>
+        <font face="Courier New">return (char_val &gt;= 'a'
+        &amp;&amp; char_val &lt;= 'z') ? char_val - ' ' :
+        char_val;</font><br>
+        [8051C0199] </li>
+</ul>
+
+<ul>
+    <li>The expression: <font face="Courier New">long_val -= (long)xdata_int_val
+        * (long)xdata_long_val; </font>was incorrectly generated
+        in the small memory model.<br>
+        [8051C0198] </li>
+</ul>
+
+<ul>
+    <li>The compiler did not note that the library function
+        ?ST_A_R123_L17 changed the value of DPTR. <br>
+        [8051C0197] </li>
+</ul>
+
+<ul>
+    <li>The compiler rewrote the code sequence:<font
+        face="Courier New"><br>
+        mov A,a<br>
+        mov R5,b<br>
+        mov c ,R4<br>
+        mov R4,A<br>
+        </font>into:<br>
+        <font face="Courier New">mov R4,a<br>
+        mov R5,b<br>
+        mov c ,R4<br>
+        </font>when size optimization level 9 was used.<br>
+        [8051C0195] </li>
+</ul>
+
+<ul>
+    <li>Using '-h' (register independent code) together with a
+        statement containing R1 (address 1) as a sfr.<br>
+        For example:<br>
+        <font face="Courier New">sfr R1=0x01; ...... R1 = foo();<br>
+        </font>resulted in an internal error. <br>
+        [8051C0193] </li>
+</ul>
+
+<ul>
+    <li>The expression:<br>
+        <font size="2" face="Courier New">*(xdata_uchar_ptr + (int_val1
+        * uchar_val) + (int_val2 / 8)) |= const_uchar_val_arr[int_val2
+        % 8]</font><font face="Courier New"> </font>gave an
+        internal error.<br>
+        [8051C0192] </li>
+</ul>
+
+<ul>
+    <li>Volatile idata memory was used for temporary storage by
+        the compiler. <br>
+        [8051C191] </li>
+</ul>
+
+<ul>
+    <li>The Stack pointer sometimes was given a random value in
+        cleanup code when adjusting the stack pointer. This
+        caused error when an interrupt occured after the stack
+        pointer was given its random value and before the
+        adjusted value was stored to the stack pointer. <br>
+        [8051C0190] </li>
+</ul>
+
+<ul>
+    <li>The compiler failed when calculating the offsets for a
+        long in a constant memory. The bug could be seen in the
+        expression:<br>
+        <font face="Courier New">long_var = ~const_long_arr[int_var]<br>
+        </font>[8051C0189][8051C0170]</li>
+</ul>
+
+<ul>
+    <li>The compiler could not handle a function that was
+        declared to have both monitor and reentrant_idata
+        properties. <br>
+        [8051C0188] </li>
+</ul>
+
+<ul>
+    <li>The compiler generated DB '\' instead of DB '\\' for the
+        declaration <font face="Courier New">unsigned char a = 0x5c;</font>
+        <br>
+        [8051C0187] </li>
+</ul>
+
+<ul>
+    <li>No tests was performed in statements like <font
+        face="Courier New">if(!(A = B - C))</font> <br>
+        [8051C0185] </li>
+</ul>
+
+<ul>
+    <li><font face="Courier New">strlen()</font> on strings in
+        PDATA memory gave wrong result. <br>
+        [8051C0184] </li>
+</ul>
+
+<ul>
+    <li>The statement <font face="Courier New">if( (foo += bar)
+        &gt;= 4711)</font> went wrong because the compiler
+        generates code that compare the variable bar with the
+        constant. This was the case if foo and bar is of type int.
+        <br>
+        [8051C0183] ([8051C0100] )</li>
+</ul>
+
+<ul>
+    <li>When a assigment of a variable was done in the statement
+        that was executed just before loop statement and this
+        variable were used as a loop variable in the loop. Then
+        the begining of the loop did not initialize the loop
+        variable. Example: If the code looked like this<br>
+        i = 10;<br>
+        for (i = 0; i &lt; 10; i++);<br>
+        the loop was not executed if the first i is in register
+        and the register assigned for i in the loop was different
+        register a different register.<br>
+        [8051C0182] </li>
+</ul>
+
+<ul>
+    <li>The compiler could not handle that parameters 2 and 3 in
+        memcpy() and strcpy() was the same variable if that
+        variable was located in a register and large memory model
+        was used. <br>
+        [8051C0181] </li>
+</ul>
+
+<ul>
+    <li>Some labels in 517 and cl517i libraries were missed.<br>
+        [8051C0180]</li>
+</ul>
+
+<ul>
+    <li>The library function strtok() contained an error that
+        that resulted in that strtok() didn't find the end of
+        string when called with first parameter as NULL (after
+        being initialized). <br>
+        [8051C0177] </li>
+</ul>
+
+<ul>
+    <li>The post increment didn't work for struct members that
+        was used as an index to an array of same struct.<br>
+        Example:<br>
+        <font face="Courier New">structPtr-&gt;member1 =
+        structPtr-&gt;member2[structPtr-&gt;member3++];<br>
+        </font>The 'member3' variable was not incremented. <br>
+        [8051C0176] </li>
+</ul>
+
+<ul>
+    <li>The offset of DPTR when using optimize level '-s0' was
+        incorrect for the statement (for example): <font
+        face="Courier New">xdata_uint_val1 = xdata_uint_val1 +
+        (((unsigned long)(xdata_uint_val2 - xdata_uint_val1) * (unsigned
+        long)(xdata_int_val % CONST_VAL1)) / (unsigned long)CONST_VAL2);</font><br>
+        [8051C0175] </li>
+</ul>
+
+<ul>
+    <li>Decrement with 2 and 3 of a variable inside a loop was
+        wrong. <br>
+        Example:<br>
+        <font face="Courier New">do{ something;<br>
+        }while(i-=2);<br>
+        </font>resulted in a decrement of 'i' by 3.<br>
+        [8051C0174]</li>
+</ul>
+
+<ul>
+    <li>The high byte of immediate data was lost when assigning a
+        XDATA pointer with immediate data that was explicitly
+        casted as a XDATA pointer. [8051C0173] </li>
+</ul>
+
+<ul>
+    <li>An OR expression with two bit variables that was casted
+        to byte variables gave a bit OR result. <br>
+        [8051C0172] </li>
+</ul>
+
+<ul>
+    <li>The compiler optimized away the instruction <font
+        face="Courier New">ADD A,#0</font> without clearing the
+        carry flag. <br>
+        [8051C0171] </li>
+</ul>
+
+<ul>
+    <li>Register variable used in a complex expression before a
+        return statement (containing that register variable) was
+        not returned correct. Example: <font face="Courier New">xdata_int_val
+        = (xdata_int_val &lt;&lt; 3) + (xdata_int_val &lt;&lt; 2);
+        return (xdata_int_val);</font><br>
+        [8051C0169] </li>
+</ul>
+
+<ul>
+    <li>First element of bitfield struct was wrongly interpreted
+        if the element was declared as a 'unsigned short'. <br>
+        [8051C0168] </li>
+</ul>
+
+<ul>
+    <li>Bit variable 'switch' didn't work. <br>
+        [8051C0167] </li>
+</ul>
+
+<ul>
+    <li>Global bit variables were not initialized with zero by
+        cstartup. <br>
+        [8051C0166] </li>
+</ul>
+
+<ul>
+    <li>Register B was not saved in interrupt functions that used
+        the instruction <font face="Courier New">MUL A,B</font><br>
+        [8051C0165] </li>
+</ul>
+
+<ul>
+    <li>If the first use of a PDATA pointer was a pre increment
+        inside an if statement the pointer was incremented by 1
+        instead of 2. <br>
+        [8051C0164] </li>
+</ul>
+
+<ul>
+    <li>The calculation of struct member address went wrong
+        because base address offset had been changed after access
+        of the first struct member. <br>
+        [8051C0163] </li>
+</ul>
+
+<ul>
+    <li>Initialization code for PDATA in cstartup.s03 used MOV
+        instruction instead of MOVX. <br>
+        [8051C0162] [8051C0113] </li>
+</ul>
+
+<ul>
+    <li>The compiler sometimes lost information on memory type
+        when it tried to find a struct member in XDATA memory
+        with help of a local XDATA pointer. <br>
+        [8051C0161] </li>
+</ul>
+
+<ul>
+    <li>The offset for registers that contained a xdata pointer
+        that was casted to point at a shorter type sometimes was
+        incorrect updated.<br>
+        [8051C0160] </li>
+</ul>
+
+<ul>
+    <li>Some definitions in io552.h were wrong and some
+        definitions were missed. <br>
+        [8051C0159]</li>
+</ul>
+
+<ul>
+    <li>B_CDATA was not declared in lnk8051a.xcl. <br>
+        [8051C0158] </li>
+</ul>
+
+<ul>
+    <li>Expressions |,&amp; and ! with bit variables hanged the
+        compiler. <br>
+        [8051C0157] </li>
+</ul>
+
+<ul>
+    <li>Multiplication with a signed variable and a constant that
+        was 2, 4, 8, 16, 64 or 128, used unsigned multiplication.
+        <br>
+        [8051C0156] </li>
+</ul>
+
+<ul>
+    <li>Generation of indirect function calls that had more than
+        two pointer parameters was wrong. <br>
+        [8051C0152] </li>
+</ul>
+
+<ul>
+    <li>The code for statement '<font face="Courier New">ucharPtr[n]
+        = ushortVal &gt;&gt; 8;</font>' was incorrect generated. <br>
+        [8051C0143] </li>
+</ul>
+
+<ul>
+    <li>Post incrementing an multidimensional array might cause
+        an Internal Error. <br>
+        [8051C0142] </li>
+</ul>
+
+<ul>
+    <li>A bit variable temporarily located in a register (Carry)
+        could sometimes be destroyed by the compiler. This bug
+        was fixed in version 5.40A but by mistake it was
+        reintroduced in 5.50A. Now it is fixed again.<br>
+        [8051C0101]</li>
+</ul>
+
+<ul>
+    <li>A complex expression inside an if-statement sometimes
+        generated wrong code. In this case the a, b and c were
+        local DATA variables and the (a = a+b) was calculated
+        wrong.<br>
+        [8051C0100] </li>
+</ul>
+
+<ul>
+    <li>The file tiny51.xcl included the library file. This was
+        not compatible with the IAR Embedded Workbench that sends
+        the library file as parameter.<br>
+        [8051T0002]</li>
+</ul>
+
+<ul>
+    <li>The definition of the Dispatcher function in d_iar51.asm
+        did not tell xlink that the function was a interrupt
+        function.<br>
+        [8051T0001]</li>
+</ul>
+
+<ul>
+    <li>The file maketiny.bat was missed in the previous release.<br>
+        [8051P0010]</li>
+</ul>
+
+<ul>
+    <li>The '<font face="Courier New"> monitor [0] </font>'
+        keyword was not accepted by the compiler. <br>
+        [CFE0106] </li>
+</ul>
+
+    <li>5.50B</li>
+    <ul>
+            <li>Complex arithmetic expressions on struct members
+                could generate wrong code. <br>
+                [8051C0139] </li>
+        </ul>
+
+    <li>5.50A <ul>
+            <li>An internal error occurred when a complex binary
+                operation involved a two-dimensional array. <br>
+                [8051C0155] </li>
+            <li>An '<font face="Courier New">if</font>' statement
+                in a '<font face="Courier New">case</font>'
+                statement such as <font face="Courier New">case
+                0: if ( foo &lt; bar)</font> within a Switch
+                statement evaluated to be true when foo had the
+                same value. <br>
+                [8051C0154] </li>
+            <li>Wrong code generated for a post decrement
+                instruction. <br>
+                [8051C0151] </li>
+            <li>Unnecessary code generated sometimes. <br>
+                [8051C0150] </li>
+            <li>When a member of the structure was updated, the
+                DPTR was not correctly updated. <br>
+                [8051C0148][8051C0153] </li>
+            <li>When using the library FRMWRI.C to print a float/double
+                with the value 0.0, the application would enter
+                an infinite loop. <br>
+                [8051C0146] </li>
+            <li>When using the stack expansion option (-u) the
+                compiler did not always save the DPTR register
+                when a interrupt function was called. <br>
+                [8051C0145]</li>
+            <li>Wrong calculation might be done when adding a
+                constant macro (#define), where the low byte is
+                equal to zero. <br>
+                [8051C0144] </li>
+            <li>When a array inside a struct starts at address 0xnn00
+                the wrong code might be calculated when accessing
+                the array. <br>
+                [8051C0141]</li>
+            <li>The library contained SJMP instructions to
+                modules that should use the LJMP instruction. [8051C0137]
+            </li>
+            <li>An Internal Error could occur when the same
+                unsigned char was used in several consecutive
+                math expressions. <br>
+                [8051C0135]</li>
+            <li>The segments I_UDATA, D_UDATA and B_UDATA was one
+                byte off when initialized. <br>
+                [8051C0134] </li>
+            <li>If a short variable was loaded with the same
+                value before and after a bitwise OR the second
+                load might be wrong. <br>
+                [8051C0133] </li>
+            <li>Wrong address to struct members clould be
+                calculated. <br>
+                [8051C0132],[8051C0140]</li>
+            <li>DPTR was not updated correctly after calling some
+                libraries. This error could also occur when some
+                inline code manipulated the DPTR. [8051C0131],[8051C0125],[8051C0124]
+            </li>
+            <li>In a complex logical expression inside a switch
+                could generate wrong code. <br>
+                [8051C0130] </li>
+            <li>Bitwise AND inside a logical expression could
+                generate an Internal Error. <br>
+                [8051C0129] </li>
+            <li>The SPCR SFR were missing in the IO_A89.H header
+                file. <br>
+                [8051C0127] </li>
+            <li>Using an array in IDATA could generate an
+                Internal Error. <br>
+                [8051C0126] </li>
+            <li>A cast from bit to char inside a arithmetic
+                expression could fail. This would occur if the
+                bit is in CY, as when it has been passed as a
+                parameter to a function. <br>
+                [8051C0123] </li>
+            <li>Register optimization made wrong assumptions for
+                float casting. <br>
+                [8051C0122] </li>
+            <li>Type casting from long to float inside an if-statement
+                could generate wrong code. E.g.<br>
+                A statement like:<br>
+                <font face="Courier New">if( (float)long_int )<br>
+                { ... };<br>
+                </font>[8051C0121]</li>
+            <li>This problem only occur when there are more than
+                one return statement in a function. If a return
+                statement is inside an if-statement and the if-statement
+                execute an indirect function call, the stack
+                might not be correct when doing the return. <br>
+                [8051C0120] </li>
+            <li>There could be a problem installing the EW8051 on
+                a Win3.1x computer. <br>
+                [INSTIS0001] </li>
+            <li>XLINK Warning 38 could be incorrectly given if
+                indirect calls are made in the interrupt routine.<br>
+                [XLINK0073] </li>
+            <li>If you compile code with a memory model that is
+                not supported for that specific <font
+                face="Courier New">-v</font> option, then a fatal
+                error occurred. This error message has been
+                changed to: <br>
+                <font face="Courier New">Error[105]: Language
+                feature not implemented: 'only memory model tiny
+                and small available for xxx'</font> <br>
+                [CFE0080]</li>
+            <li>When DPTR register was loaded with an address and
+                this DPTR address was destroyed in some
+                calculation, DPTR could be destroyed with a function
+                call and thus the wrong address would be in the
+                DPTR.</li>
+        </ul>
+    </li>
+</ul>
+
+<ul>
+    <li>5.40A <ul>
+            <li>Switch statements might generate wrong code. To
+                get around the problem you should try to place
+                the CASEes in increasing/decreasing order. [8051C0119]</li>
+            <li>Wrong code might be generated for a idata pointer
+                that is pre-increased, e.g. ++ptr; This error
+                would not occur if debug option (-r0) was used. <br>
+                [8051C0116] </li>
+            <li>There might be a faulty initialization of a local
+                loop variable. This occur if the variable is
+                placed in the DATA memory and on optimization
+                level 6 or higher. <br>
+                [8051C0115] </li>
+            <li>A loop variable that reference two different
+                structures inside the loop could put the compiler
+                in a infinitive loop. &quot;The compiler would
+                hang.&quot; <br>
+                [8051C0114] </li>
+            <li>The initialization of PDATA segment in cstartup.s03
+                was wrong. <br>
+                [8051C0113] </li>
+            <li>For-loops on optimization 8 or 9 will loop an
+                extra 256 times if the lower byte of the &quot;loop-count&quot;
+                is 0. <br>
+                [8051C0112] <br>
+                For example:<br>
+                <font face="Courier New">for(k = 0;k &lt; 256;k++)<br>
+                </font>will loop 256 times. 256 decimal = 100 hex<br>
+                This will happen with every for loop that loops
+                exactly (256 * n) times.</li>
+            <li>Calculating the index to a local array might go
+                wrong. This problem occur in a reentrant_idata
+                function when the array is local to the function.
+                [8051C0111] </li>
+            <li>Interrupt function might not store back local
+                variable when leaving (RETI). This only occur
+                when using -r0 and highest optimization (-s9 or -z9).
+                <br>
+                [8051C0110] </li>
+            <li>A return statement inside a loop might return the
+                wrong value. <br>
+                [8051C0109]</li>
+            <li>Adding/subtracting to DATA from XDATA memory
+                might go wrong. This will occur if the type is
+                short and the lower byte is 0 (zero). <br>
+                [8051C0108] </li>
+            <li>A complex expression to index an array could
+                generate an Internal Error (Funny EA). <br>
+                [8051C0107] </li>
+            <li>An Internal Error would occur if you would have
+                op= operand inside a C-macro, e.g: #define IE(x,y)
+                { y += x; x += y; }. <br>
+                [8051C0106] </li>
+            <li>Accessing a global const memory location and at
+                the same time modifying the accessed value might
+                destroy the const data pointer and thus the wrong
+                value will be read. <br>
+                [8051C0105]</li>
+            <li>When using BDATA pointers inside logical
+                statements, there might be an Internal Error. <br>
+                [8051C0104] </li>
+            <li>When an assignment to a strucutre is followed by
+                a reference to the same structure, the pointer to
+                that structure might point to a memory location
+                outside the structure. <br>
+                [8051C0103][8051C0102]</li>
+            <li>A bit variable temporarily located in a register
+                (Carry) could sometimes be destroyed by the
+                compiler. <br>
+                [8051C0101]</li>
+            <li>Post inc/dec as function argument. <br>
+                [ function( argument++ ); ] If a idata variable
+                is post inc/dec when passed as a function
+                argument the compiler will generate an Internal
+                Error. [8051C0096][8051C0047]<br>
+                Workaround #1: Increase the variable after the
+                function call.<br>
+                Workaround #2: Put the variable in data or XDATA
+                memory.</li>
+            <li>Logical conditions on variables in data memory
+                might generate an Internal Error. In tiny memory
+                model the lines: <br>
+                <font face="Courier New">unsigned int UCN_DATA;<br>
+                ...<br>
+                if (UCN_DATA | 0x0800)</font><font
+                face="Times New Roman"><br>
+                </font>may generate an internal error. Here
+                UCN_DATA is in the data memory location. <font
+                face="Courier New"><br>
+                </font>[8051C0090]</li>
+            <li>Bit complement of bits inside the same byte would
+                generate wrong code on optimization level 4 or
+                higher. <br>
+                [G0059]<br>
+                E.g: A expression like: <br>
+                <font face="Courier New">my_byte.2 = ~my_byte.7;<br>
+                would generate code like:<br>
+                CPL my_byte2_data.2;</font></li>
+            <li>In the C library the functions STRTOL and STRTOUL
+                have a faulty behavior. When processing a string
+                like &quot;000abc&quot;, the second parameter
+                should point to the 'a' in the string &quot;000abc&quot;.
+                It will point to the first '0' in that string. <br>
+                [CLIB0013] </li>
+            <li>There was a bug in XLINK using option -a. If
+                trying to link a 8051 project with this (-a)
+                option would generate an Internal Error. <br>
+                [XLINK0065]</li>
+            <li>Bit variables that were extern declared or solved
+                at link-time did not get the right address. Only
+                bit variables that the assembler could solve at
+                compile-time would get the right address.</li>
+            <li>No '\' was generated from the compiler when
+                output assembler file (-A or -a) option was used.
+                This '\' character tells the assembler that the
+                line continues on the next row.</li>
+        </ul>
+    </li>
+</ul>
+
+<ul>
+    <li>5.30A <ul>
+            <li>The library routine for the switch statement was
+                wrong. In a switch with more than 257 cases, the
+                wrong case could be executed. <br>
+                [8051C0095]</li>
+            <li>In size optimization a variable temporarily in
+                the register file might not be updated. This
+                could occur when a memory location was accessed
+                both as bit address and as a byte variable
+                address. If one of the variables is updated and
+                the other is in the register file, the compiler
+                might not update the register variables. <br>
+                [8051C0093] </li>
+            <li>Unsigned char compare with the value #254 could
+                generate wrong code. <br>
+                [8051C0092] </li>
+            <li>Bit-wise AND (&amp;) on a long variable could
+                generate wrong code. <br>
+                [8051C0089] </li>
+            <li>Writing to memory location through an array of
+                three-byte pointers would not work, e.g: (*(char
+                *) array[i]) = 1; The calculated pointer would be
+                wrong. <br>
+                [8051C0088] </li>
+            <li>Adding complex structures with itself could
+                generate an Internal Error. <br>
+                [8051C0086] </li>
+            <li>Byte compare with variables in data or idata
+                memory could generate an Internal Error. <br>
+                [8051C0085] </li>
+            <li>Bitfields with size equal to eight could generate
+                an Internal Error. <br>
+                [8051C0084] </li>
+            <li>The bitwise complement operator (~) could fail to
+                do a correct complement inside a conditional
+                statement. In this case a logical NOT was
+                performed instead.<br>
+                [8051C0083] </li>
+            <li>The pragma function=reentrant_idata could fail to
+                locate the function as a reentrant function with
+                its stack in idata memory. In this case you would
+                get an error message, Error[136]: Redeclaration
+                error or Error[105]: Language feature not
+                implemented: 'only idata allowed as local memory
+                attribute in reentrant_idata function'. To get
+                around this you could use the keyword
+                'reentrant_idata' instead. <br>
+                [8051C0080][CFE0067] </li>
+            <li>Functions that had two or more parameters from
+                the same struct would generate an Internal Error.
+                <br>
+                [8051C0075] </li>
+            <li>If you negated a short/long variable and used the
+                high byte right after the negation, you got an
+                incorrect value. <br>
+                [8051C0070] </li>
+            <li>[8051C0069] </li>
+            <li>If parameters are placed in PDATA this might
+                cause an internal error.<br>
+                [8051C0067] </li>
+            <li>Assigning a value to a structure could cause an
+                internal error. E.g: <br>
+                <font face="Courier New">struct my_struct {<br>
+                unsigned int value_int;<br>
+                unsigned int array_int[10];<br>
+                };<br>
+                struct my_struct stru;<br>
+                stru.array_int[a] = stru.value_int = int_value;<br>
+                </font>would cause an Internal error. <br>
+                [8051C0062]</li>
+            <li>The compiler generated a GPF on some empty
+                switches. <br>
+                [8051C0053][G0036] </li>
+            <li>Non banked function pointers declared inside a
+                structure could generate code for a banked call.
+                This is for a banked project. <br>
+                [8051C0029] </li>
+            <li>Switch tables with hole inside could fall through
+                to a wrong case statement. <br>
+                [8051C0028][8051C0021]</li>
+            <li>Casting an array element to a generic pointer
+                would sometimes generate the wrong address. <br>
+                [8051Cxxxx] </li>
+            <li>When you run a banked project in the C-SPY
+                debugger you have to set the banked size to the
+                linker. This is done with the -D(define symbol)
+                option to the XLINK linker. E.g: <br>
+                <font face="Courier New">-D?BANK_HIGH=10000<br>
+                -D?BANK_LOW=8000<br>
+                </font>[8051P0002]</li>
+            <li>When a struct in XDATA is to be passed as a
+                parameter the passed parameters might end up in
+                IDATA instead. </li>
+        </ul>
+    </li>
+</ul>
+
+<ul>
+    <li>5.21B <ul>
+            <li>The ANSI C function memcpy() uses DPTR and
+                destroys the value. If the next C statement uses
+                the same memory location as DPTR had before
+                entering memcpy() it will use the destroyed DPTR
+                as memory pointer and thus generate wrong code. <br>
+                [8051C0081][8051C0065] </li>
+            <li>The index to multi-dimensional arrays might be
+                wrongly calculated, and thus load/store to the
+                wrong memory location. <br>
+                [8051C0078] </li>
+            <li>Increasing/decreasing a pointer in XDATA/PDATA
+                memory might generate internl error or in worst
+                case generate wrong assembler code. The code
+                generation error occurs if the XDATA/PDATA
+                pointer is inside a struct. <br>
+                [8051C0076]</li>
+            <li>If a reentrant function which has more than one
+                return statement and one return statement is
+                inside an if-statement the return value might be
+                wrong. This only occurs if no debug information
+                is generated (the -r option is not set). <br>
+                [8051C0072] </li>
+            <li>If a complex expression uses members from the
+                same structure that have different types (e.g:
+                char and int) the type conversion might fail and
+                thus generate wrong code. <br>
+                [8051C0066] </li>
+            <li>Internal Error for for-loop with an empty
+                statement and for some simple statements inside
+                the for-loop. These Internal Errors occur on
+                different levels of optimization (from level 3
+                to 9). <br>
+                [8051C0064][8051C0063][8051C0042] </li>
+            <li>Variables that was declared as SFR could be
+                optimized away in optimization level 9. <br>
+                [CFE0055]</li>
+            <li>A problem in the type globalization routines
+                could cause an exception when reading input
+                object files. This error occurs in xlink v4.49E
+                and earlier. <br>
+                [XLINK0026] </li>
+            <li>When the linker (xlink) generates list file and a
+                type conflict occur there might be an internal
+                error. This occurs in xlink v4.49B and earlier. [XLINK0016]
+            </li>
+            <li>Unsigned long compare with 0 (zero) might
+                generate wrong code. The test if the expression
+                is true does actually test if the expression is
+                false. Similarly the test for false tests the
+                expression for true. </li>
+        </ul>
+    </li>
+</ul>
+
+<ul>
+    <li>5.21A <ul>
+            <li>Shifting a bit 8 or 16 times could cause an
+                internal error. <br>
+                [8051C0054] </li>
+            <li>Loop optimization for loops such as: <br>
+                <font face="Courier New">for ( i=0 ; i&lt; 9 ; i++
+                )<br>
+                arr[i] = x;<br>
+                </font>should only be valid when x is a constant
+                and the index starts at 0. In earlier versions
+                optimization where done for all types of x, but
+                with wrong value in the assignment. <br>
+                [8051C0052][8051C0041][8051C0045]</li>
+            <li>The header file HEAP.C was from an old version of
+                the C library. <br>
+                [8051C0051] </li>
+            <li>Operating on code pointers could generate
+                internal error.<br>
+                [8051C0050] </li>
+            <li><font face="Courier New">strlen()</font> could
+                under some conditions return the wrong value. <br>
+                [8051C0044] </li>
+            <li>The interrupt function might not save PSW even
+                when the PSW register has been changed by the
+                interrupt function. <br>
+                [8051C0043] </li>
+            <li>An infinite loop with code greater the 128 bytes
+                generated an internal error if -q option is on
+                for the -v1 processor. <br>
+                [8051C00039] </li>
+            <li>An internal error occurred when some operation (e.g.
+                shift, division) was performed on an integer and
+                the result should be stored in a char. <br>
+                [8051C0038] </li>
+            <li>The 'bit' return value could sometimes generate
+                an internal error. <br>
+                [8051C0037] </li>
+            <li>Internal error is generated if tryingto access a
+                PDATA element with an XDATA pointer and no cast
+                is made. <br>
+                [8051C0036] </li>
+            <li>A target specific error will occur when trying to
+                write to code memory. &quot;filename.C&quot;,nnError[154]:
+                8051 specific: 'Writing to CODE memory' [8051C0035]</li>
+            <li>There was a jump optimization on bit operations
+                that caused the compiler to loose the value of
+                the bit. <br>
+                [8051C0034] </li>
+            <li>An XDATA pointer that is indexed and assigned a
+                value might calculate wrong address for storing
+                that value at. <br>
+                [8051C0032] </li>
+            <li>MDU library generated Range Error when linked
+                together with a project. <br>
+                [8051C0031] </li>
+            <li>High optimization in code that has a return
+                statement inside a switch could cause an internal
+                error. <br>
+                [8051C0030] </li>
+            <li>On high optimization boolean operations might
+                fail and produce wrong result. <br>
+                [8051C0022] </li>
+            <li>The compiler generated wrong UBROF information.
+                Functions that were declared non_banked in a
+                banked application could get the type banked-function.
+                The generated code was OK, only the debug
+                information was wrong. <br>
+                [CFE1004] </li>
+            <li>The options -rf (generate source-file references)
+                and -rd (generate database information) are
+                removed. It is still possible to set these
+                options from the command line but UBROF file will
+                not be OK. DO NOT USE THE OPTIONS -rd OR -rf in
+                the compiler.</li>
+        </ul>
+        <p><font size="2">Copyright 2001 IAR Systems. All rights
+        reserved.</font> </p>
+    </li>
+</ul>
+</body>
+</html>

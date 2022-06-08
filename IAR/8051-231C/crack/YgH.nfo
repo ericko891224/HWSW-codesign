@@ -1,0 +1,28 @@
+IAR Embedded Workbench for 8051 (EW8051) v5.52B [Full]
+
+0. run IAR.reg first if you never install any official IAR's product before!
+1. copy and replace icc8051.dll, icc8051.exe, and s8051.cdr to ...\EW23\8051\BIN\
+2. enjoy!
+
+YgH
+
+
+
+   Installation Date: 2003-03-02
+   Installation Path: C:\Program Files\IAR Systems\Ew23
+        Product Name: IAR Embedded Workbench for 8051
+        Product Type: 
+              Target: 8051
+      License Number: 
+    License Key Type: Node License
+   Installed Feature:  
+     Product Version: 5.52B
+Product Release Date: 2001-11-30
+ Product GUI Version: 2.31
+Installed Components: 
+                      Base Component
+                      IAR License Manager
+                      IAR Embedded Workbench
+                      IAR C-SPY Simulator Debugger
+                      System files
+                      IAR Launcher

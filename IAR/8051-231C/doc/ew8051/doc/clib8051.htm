@@ -1,0 +1,98 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>Readme file for IAR C Library Source for 8051</title>
+</head>
+
+<BODY bgColor=#ffde00>
+<h2>Readme file for IAR C Library Source for 8051 V5.52B</h2>
+
+<font size=-1>
+  Updated: 04/Dec/2001 [IOLW]<br>
+  Archived: $Revision: 1.4 $
+</font>
+
+<p>This is the readme file for the complete product package. Here
+you will find links to individual readme files for each component.
+It is highly recommended that you read these files, as they
+contain information about new features, program corrections,
+known problems, and various information issued after the release of
+the user guides.</p>
+
+<h2>Contents</h2>
+
+<ul>
+    <li><a href="#components">Readme files for individual
+        components</a></li>
+    <li><a href="#general">General information</a></li>
+    <li><a href="#contents">Product contents</a></li>
+    <li><a href="#manuals">Manuals</a> </li>
+    <li><a href="#trademarks">Trademarks</a> </li>
+</ul>
+
+<h3><a name="components"></a>Readme files for individual
+components</h3>
+
+<ul>
+    <li><a href="CLibrary.html">IAR CLib C Library Source</a></li>
+    <li><a href="intr8051.htm">Intrinsic Library for 8051</a></li>
+</ul>
+
+<h3><a name="general"></a>General information</h3>
+
+<ul>
+    <li><h4>Building the libraries</h4>
+        <p>To build the C run-time libraries for 8051, you need
+        the IAR Embedded Workbench for 8051, in particular the
+        ICC8051, A8051, and the XLIB executable. Follow these
+        steps to build new run-time libraries. Run the <code>CL8051.BAT</code>
+        from the <code>src\lib</code> directory. See this file
+        about some environment variables that must be set before
+        you run it.</p>
+        <p>You can configure <code>CL8051.BAT</code> by using
+        command line options, or by rewriting it to fit your
+        particular needs.</p>
+        <ul>
+            <li><strong>CL8051.BAT</strong> - Batch file for
+                building the 8051 libraries<p><strong>Usage:</strong><br>
+                <code>CL8051.BAT &lt;tiny&gt; &lt;mem model&gt; &lt;reent 1&gt; &lt;reent 2&gt; &lt;reent 3&gt;</code></p>
+                <pre>
+<b>OPTION         CHOICES       DESCRIPTION
+</b><code>
+&lt;tiny&gt;      tiny,no_tiny  Use no_tiny to build full library
+&lt;mem model&gt; t,s,c,m,l,b   Memory model (tiny,small,compact,large,banked)
+&lt;reent 1&gt;   reentrant     To build reentrant library (if not exclude this)
+&lt;reent 2&gt;   r             When building reentrant library (if not exclude this)
+&lt;reent 3&gt;   -E            When building reentrant library (if not exclude this)</code></pre>
+                <pre><font size="4" face="Times New Roman"><b>Examle:
+</b>The command:
+</font><code>&lt;$TOOLKIT_DIR$&gt;\src\lib\CL8051 no_tiny t
+</code><font size="4" face="Times New Roman">will build the libraries for the tiny memory model.</font></pre>
+                <pre><font size="4" face="Times New Roman">The command:
+</font><code>&lt;$TOOLKIT_DIR$&gt;\src\lib\CL8051 no_tiny l reentrant r -E
+</code><font size="4" face="Times New Roman">will build the libraries for the large memory model using the reentrant stack.</font></pre>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<h3><a name="contents"></a>Product contents</h3>
+
+<ul>
+    <h4>CLIB8051 V5.5B</h4>
+<pre>
+CLIB                     V3.34K  IAR C Run-Time Library Source
+8051 Intrinsic Library   V5.5    IAR Intrinsic Library Source
+</pre>
+    <h4><a name="manuals">Manuals</a></h4>
+<pre>
+IAR C Library             IARCLIB-1    September 2000
+  <a href="clib.pdf">IAR C Library Functions, Reference Guide</a>
+</pre>
+            </li>
+        </ul>
+        <font size="2">Copyright 2001 IAR Systems. All rights reserved.</font> </p>
+    </li>
+</ul>
+</body>
+</html>

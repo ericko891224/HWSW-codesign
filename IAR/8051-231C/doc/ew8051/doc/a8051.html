@@ -1,0 +1,519 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>Readme file for A8051</title>
+</head>
+<body bgcolor="#FFDE00">
+
+<h2>Readme file for A8051 V5.52B</h2>
+<font size=-1>
+  Updated: 04/Dec/2001 [IOLW]<br>
+  Archived: $Revision: 1.14 $
+</font>
+
+<ul>
+    <li><a href="#important">Important information</a> </li>
+    <li><a href="#features">New features</a> </li>
+    <li><a href="#problems">Known problems</a> </li>
+    <li><a href="#pcorr">Program corrections</a> </li>
+    <li><a href="#misc">Miscellaneous</a> </li>
+    <li><a href="#history">Release history</a> </li>
+</ul>
+
+<h3><a name=important></a>Important information</h3>
+
+<ul>
+    <li>The assembler uses the UBROF 6 format as default
+        debug format.</li>
+</ul>
+
+<ul>
+    <li>Predefined SFRs.<br>
+        <br>
+        <table border="1" cellpadding="2" cellspacing="0"
+        width="60%" bordercolor="#000000"
+        bordercolordark="#000000" bordercolorlight="#000000">
+            <tr>
+                <td valign="top" width="33%"><u>SFR</u></td>
+                <td valign="top" width="33%"><u>Address</u></td>
+                <td valign="top" width="33%"><u>Description</u></td>
+            </tr>
+            <tr>
+                <td valign="top" width="33%">P0</td>
+                <td valign="top" width="33%">0x80</td>
+                <td valign="top" width="33%">Port 0</td>
+            </tr>
+            <tr>
+                <td valign="top" width="33%">SP</td>
+                <td valign="top" width="33%">0x81</td>
+                <td valign="top" width="33%">Stack pointer</td>
+            </tr>
+            <tr>
+                <td valign="top" width="33%">DPL</td>
+                <td valign="top" width="33%">0x82</td>
+                <td valign="top" width="33%">Data pointer low</td>
+            </tr>
+            <tr>
+                <td valign="top" width="33%">DPH</td>
+                <td valign="top" width="33%">0x83</td>
+                <td valign="top" width="33%">Data pointer high</td>
+            </tr>
+            <tr>
+                <td valign="top" width="33%">PCON</td>
+                <td valign="top" width="33%">0x87</td>
+                <td valign="top" width="33%">Power control
+                register</td>
+            </tr>
+            <tr>
+                <td valign="top" width="33%">TCON</td>
+                <td valign="top" width="33%">0x88</td>
+                <td valign="top" width="33%">Timer/counter
+                control register</td>
+            </tr>
+            <tr>
+                <td valign="top" width="33%">TMOD</td>
+                <td valign="top" width="33%">0x89</td>
+                <td valign="top" width="33%">Timer mode</td>
+            </tr>
+            <tr>
+                <td valign="top" width="33%">TL0</td>
+                <td valign="top" width="33%">0x8A</td>
+                <td valign="top" width="33%">Timer low 0</td>
+            </tr>
+            <tr>
+                <td valign="top" width="33%">TL1</td>
+                <td valign="top" width="33%">0x8B</td>
+                <td valign="top" width="33%">Timer low 1</td>
+            </tr>
+            <tr>
+                <td valign="top" width="33%">TH0</td>
+                <td valign="top" width="33%">0x8C</td>
+                <td valign="top" width="33%">Timer high 0</td>
+            </tr>
+            <tr>
+                <td valign="top" width="33%">TH1</td>
+                <td valign="top" width="33%">0x8D</td>
+                <td valign="top" width="33%">Timer high 1</td>
+            </tr>
+            <tr>
+                <td valign="top" width="33%">P1</td>
+                <td valign="top" width="33%">0x90</td>
+                <td valign="top" width="33%">Port 1</td>
+            </tr>
+            <tr>
+                <td valign="top" width="33%">SCON</td>
+                <td valign="top" width="33%">0x98</td>
+                <td valign="top" width="33%">Serial port control
+                register</td>
+            </tr>
+            <tr>
+                <td valign="top" width="33%">SBUF</td>
+                <td valign="top" width="33%">0x99</td>
+                <td valign="top" width="33%">Serial buffer</td>
+            </tr>
+            <tr>
+                <td valign="top" width="33%">P2</td>
+                <td valign="top" width="33%">0xA0</td>
+                <td valign="top" width="33%">Port 2</td>
+            </tr>
+            <tr>
+                <td valign="top" width="33%">IE</td>
+                <td valign="top" width="33%">0xA8</td>
+                <td valign="top" width="33%">Interrupt enable
+                register 0</td>
+            </tr>
+            <tr>
+                <td valign="top" width="33%">P3</td>
+                <td valign="top" width="33%">0xB0</td>
+                <td valign="top" width="33%">Port 3</td>
+            </tr>
+            <tr>
+                <td valign="top" width="33%">PSW</td>
+                <td valign="top" width="33%">0xD0</td>
+                <td valign="top" width="33%">Program status word</td>
+            </tr>
+            <tr>
+                <td valign="top" width="33%">ACC</td>
+                <td valign="top" width="33%">0xE0</td>
+                <td valign="top" width="33%">Accumulator</td>
+            </tr>
+            <tr>
+                <td valign="top" width="33%">B</td>
+                <td valign="top" width="33%">0xF0</td>
+                <td valign="top" width="33%">B-register</td>
+            </tr>
+        </table>
+    </li>
+</ul>
+
+<ul>
+    <li>Predefined bits<ul>
+            <li>In SFR TCON at address 0x88:<br>
+                <br>
+                <font face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                bit 0:IT0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /*
+                Interrupt 0 type control bit */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 1:IE0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Interrupt 0 flag */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 2:IT1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Interrupt 1 type control bit */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 3:IE1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Interrupt 1 flag */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 4:TR0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Timer 0 run control bit */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 5:TF0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Timer 0 overflow flag */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 6:TR1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Timer 1 run control bit */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 7:TF1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Timer 1 overflow flag */<br>
+                </font></li>
+            <li>In SFR SCON at address 0x98:<br>
+                <font face="Courier New"><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 0:RI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Receive interrupt flag bit */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 1:TI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Transmit interrupt flag bit */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 2:RB8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Receiver bit 8 */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 3:TB8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Transmit bit 8 */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 4:REN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Receiver enable bit */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 5:SM2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Serial port mode bit 2 */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 6:SM1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Serial port mode bit 1 */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 7:SM0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Serial port mode bit 0 */<br>
+                </font></li>
+            <li>In SFR IE at address 0xA8:<br>
+                <font face="Courier New"><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 0:EX0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* External interrupt 0 enable bit in IE&nbsp; */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 1:ET0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Timer 0 interrupt enable bit in IE&nbsp; */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 2:EX1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* External interrupt 1 enable bit in IE&nbsp; */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 3:ET1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Timer 1 interrupt enable bit in IE&nbsp; */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 4:ES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Serial interrupt enable bit in IE&nbsp; */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 5:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 6:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 7:EA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Global Interrupt Enable */`<br>
+                </font></li>
+            <li>In SFR P3 at address 0xB0:<br>
+                <font face="Courier New"><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 0:RXD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Serial port receive data input */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 1:TXD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Serial port transmit data output */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 2:INT0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* External interrupt 0 */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 3:INT1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* External interrupt 1 */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 4:T0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Timer 0 input */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 5:T1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Timer 1 input */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 6:WR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Write signal to external memory */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 7:RD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Read signal to external memory */<br>
+                </font></li>
+            <li>In SFR IP at address 0xB8:<br>
+                <font face="Courier New"><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 0:PX0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* External interrupt 0 priority low */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 1:PT0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Timer 0 interrupt priority low */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 2:PX1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* External interrupt 1 priority low */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 3:PT1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Timer 1 interrupt priority low */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 4:PS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Serial I/O port interrupt priority low. */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 5:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 6:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 7:<br>
+                </font></li>
+            <li>In SFR PSW at address 0xD0:<br>
+                <font face="Courier New"><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 0:P&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Parity bit */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 1:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 2:OV&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Overflow flag&nbsp;&nbsp; */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 3:RS0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Register bank select, bit 0 */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 4:RS1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Register bank select, bit 1 */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 5:F0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* General-purpose flag */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 6:AC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Auxiliary carry */<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit 7:CY,C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                /* Carry flag */</font> </li>
+        </ul>
+    </li>
+    <li>Upgrading from V2.XX<ul>
+            <li>Reserved Symbols<br>
+                You can get a listing of all symbols via the -xDI
+                command line option.<br>
+                </li>
+            <li>Directives<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -
+                PUBLIC and EXTERN do not allow a type specifier.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -
+                LOCSYM accepted but not executed.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -
+                LSTWID accepted but not executed.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -
+                LSTFOR accepted but not executed.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - TITL
+                accepted but not executed.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -
+                PTITL accepted but not executed.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -
+                STITL accepted but not executed.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -
+                PSTITL accepted but not executed.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - The
+                LST... directives do not remember earlier LST...
+                directives.&nbsp;I.e. they are not of the
+                counting type.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -
+                Cross-reference table printed differently.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - DS 0
+                does not force alignment.</li>
+        </ul>
+        <ul>
+            <li>The syntax for floating point numbers does not
+                allow a leading double quote. I.e. you cannot
+                write DD &quot;1.0.</li>
+            <li>The PUBLIC and EXTERN directives do not take type
+                information.<br>
+                <u><br>
+                Support for Micro-series Assembler Macros in IAR
+                assembler&nbsp;</u></li>
+            <li>For compatibility with A8051, V2 the old
+                macro syntax is also supported. Please use the
+                new syntax when you write new code.</li>
+            <li>Note that there are two types of macro
+                definitions:<p>1.&nbsp; Intel/Motorola macros. These are defined:<br>
+                &quot;<font face="Courier New">macname MACRO&nbsp;&nbsp;args</font>&quot;. Please see the manual for
+                details.</p>
+                <p>2. IAR Micro-Series macros. These are defined:<br>
+                &quot;<font face="Courier New">MACRO&nbsp;&nbsp;%macname</font>&quot;.</p>
+                <p>Note that you cannot have a label in the
+                beginning of that line. You can use both types of
+                macros in a program, but you cannot use Micro-series
+                operators in Intel/Motorola macros.&nbsp;Intel/Motorola
+                macros allow \A through \Z as argument references,
+                but they are not valid for Micro-series macros (some
+                of them are used as operators).<br>
+                <br>
+                For more information on the IAR Micro-Series
+                macros, please see the A8051 V2 manual.</p>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<ul>
+    <li>Operators in A8051<br>
+        Please use the command line option -u to get compatibility
+        with V2.xx.</li>
+</ul>
+
+<ul>
+    <li>Source format in A8051<br>
+        Directives and mnemonics are not allowed in the label
+        field, i.e. they need a space, tab, or label to their left.</li>
+</ul>
+
+<h3><a name=features>New features</h3>
+
+<ul>
+    <li>None</li>
+</ul>
+
+<h3><a name=problems></a>Known problems</h3>
+
+<ul>
+    <li>The following code sequence generates an internal error:<br>
+        <font face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        macro %PUSHA<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        PUSH A<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        endmac<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MY_DATA:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_START
+        EQU MY_DATA<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MY_CODE:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        %PUSHA<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        IF (D_START &lt; 128)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        NOP<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        ENDIF<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        END<br>
+        </font>[8051A0024]</li>
+</ul>
+
+<ul>
+    <li>The assembler cannot handle symbols with bit addresses
+        in segments other than bit segments.<br>
+        [8051A0023]</li>
+</ul>
+
+<h3><a name=pcorr>Program corrections</h3>
+<ul>
+    <li>Nothing</li>
+</ul>
+
+<h3><a name=misc></a>Miscellaneous</h3>
+
+<ul>
+    <li>Nothing</li>
+</ul>
+
+<h3><a name=history></a>Release history</h3>
+
+<dir>
+    <li>5.52A<ul>
+      <li>The file asm.xcl defined the wrong cpu.<br>
+      [8051A0025]</li>
+</ul>
+
+    <li>5.51A<ul>
+    <li>For single-quoted strings with one character, the error
+        message <tt>Error[0]: Invalid syntax</tt> was sometimes
+        generated.<br>
+        [8051A0022]</li>
+</ul>
+
+<ul>
+    <li>The option -u did not work for AND, OR, or XOR.<br>
+        [8051A0021]</li>
+</ul>
+
+<ul>
+    <li>The assembler generated &quot;Error[43]: Illegal
+        effective address&quot; for SETB and CLR where the
+        address should be legal.<br>
+        [8051A0020]</li>
+</ul>
+
+<ul>
+    <li>The ORL and ANL did not support the logical complement
+        &quot;/&quot; for some bit-addressed bits.<br>
+        [8051A0019]</li>
+        </ul>
+    </li>
+</dir>
+
+<dir>
+    <li>3.20A<ul>
+            <li>On the SUN platform, the SETB instruction would
+                generate:<br><tt>Error[43]: Illegal effective</tt><br>
+                [8051A0016]</li>
+        </ul>
+    </li>
+</dir>
+
+<dir>
+    <li>3.11A<ul>
+            <li>In an expression where the multiplication operand
+                (*) is evaluated together with operands of the
+                same precedence, the multipication operand will
+                be evaluated after the other operands, not left-to-right.<br>
+                [8051A0015]</li>
+            <li>Relative bits were assigned the wrong addresses if
+                more than one source file was included in the
+                project. The bits were assigned absolute
+                addresses.<br>
+                [8051A0014]</li>
+            <li>The predefined symbol P had the wrong address (0xB0.5)
+                associated with it. The address is changed to 0xD0.0.<br>
+                [8051A0013]</li>
+            <li>The expression HIGH( t ) got treated as solved by
+                the assembler&nbsp;when t was declared as PUBLIC
+                and placed in a different segment. [AFE0089]</li>
+            <li>It was not possible to check the length of a
+                definition field.<br>
+                [AFE0078]</li>
+            <li>The DB directive wrongly aligned defines to 16-bit,
+                padding with zeros (0).<br>
+                [AFE0079]</li>
+        </ul>
+    </li>
+</dir>
+
+<dir>
+    <li>3.10A<ul>
+            <li>The PCON sfr was not defined in the assembler.<br>
+                [8051A0011]</li>
+            <li>If a bit-addressable sfr was defined and then
+                accessed with the dot (.) notation, a warning[400]
+                would be generated. This should only happen
+                if the defined address is not bit-addressable.<br>
+                [8051A0010]</li>
+            <li>The option -u (old operators) did not keep the
+                AND, OR, and XOR operators from the earlier
+                version. Now the -u option will&nbsp;generate: <font
+                face="Courier New"><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                AND&nbsp;&nbsp;&nbsp;&nbsp; == bitwise and<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                OR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; == bitwise or<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                XOR&nbsp;&nbsp;&nbsp;&nbsp; == bitwise xor<br>
+                </font>[8051A0009]</li>
+            <li>The assembler in the EW8051 was not able to
+                handle certain code generated by the compiler.
+		For example:<br>
+                <font face="Courier New">MOV DPTR,#$LOCBX assem</font><br>
+		would generate an Internal Error.<br>
+                [251A0002]</li>
+        </ul>
+    </li>
+</dir>
+
+<dir>
+    <li>3.01C<ul>
+            <li>If CLR, CPL, or SETB is used with an sfr that is
+                not in the bit-addressable area, a warning is
+                given.</li>
+        </ul>
+    </li>
+</dir>
+
+<dir>
+    <li>3.01A<ul>
+            <li>An Internal Error (align error) was generated in
+                A8051.DLL for some cases of assembler source.<br>
+                [8051A0005]</li>
+            <li>Duplicate assignment of a variable inside an IF-ELSE
+                statement was not allowed.<br>
+                [8051A0004]</li>
+            <li>An IE in the A8051.DLL caused by the 16-bit dll.<br>
+                [8051A0003]</li>
+            <li>The A8051.DLL could not handle long file names.<br>
+                [8051A0002]</li>
+            <li>The message window did not show errors or
+                warnings generated by the assembler.<br>
+                [8051A0001]</li>
+        </ul>
+        <p><font size="2">Copyright 2001 IAR Systems. All rights
+        reserved.</font> </p>
+    </li>
+</dir>
+</body>
+</html>

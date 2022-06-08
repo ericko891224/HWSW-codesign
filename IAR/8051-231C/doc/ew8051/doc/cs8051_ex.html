@@ -1,0 +1,191 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>Example of macro file usage</title>
+</head>
+<body bgcolor="#FFDE00">
+
+<h2>Example of macro file usage</h2>
+<font size=-1>
+  Updated: 25/Okt/2001 [IOLW]<br>
+  Archived: $Revision: 1.7 $
+</font>
+
+<ul>
+    <li><a href="#important">General information</a> </li>
+    <li><a href="#examples">Examples</a> </li>
+</ul>
+
+<p>For information about the generic components of the IAR C-SPY
+Intel 8051 Simulator, refer to the <a href="cwgui.html">Readme
+file for IAR C-SPY Debugger</a></p>
+
+<h3><a name="important"></a>General information</h3>
+
+<p>This document describes how to use the macro language to
+simulate different peripherals, such as timers. The package is
+only an example of how to use the macro language. You can freely
+change these macro files to fit your needs.</p>
+
+<dir>
+    <li><h4>Processor specifics</h4>
+        <p>For information on how the different peripherals work
+        on the chip, refer to the hardware manual for your
+        processor.</p>
+    </li>
+</dir>
+
+<dir>
+    <li><h4>Macro language</h4>
+        <p>The macro language is described in the manual. You can
+        also see all available system and user macros listed in C-SPY.
+        In the Options menu, select &quot;Load Macro&quot;. At
+        the bottom of the dialog box you can see all registered
+        macros.</p>
+    </li>
+</dir>
+
+<h3><a name="examples"></a>Examples</h3>
+
+<p>All examples described in this text file are located in the \8051\TUTOR
+directory.</p>
+
+<p>At the moment there are two different examples of
+macro-simulated peripherals, both timers. There are also two macro
+files simulating external interrupts. These macro files do not
+come with any corresponding C source file.<br>
+</p>
+
+<dir>
+    <li><h4>Timer</h4>
+        <p><strong>Files included in this project:<br>
+        </strong>- timer.c<br>
+        - timer.mac</p>
+        <p><strong>Building the project:<br>
+        </strong>- Create a new, empty project in the IAR Embedded
+        Workbench.<br>
+        - Include the TIMER.C file in the project.<br>
+        - In the project option, C-SPY category, use the TIMER.MAC
+        file as the setup file.<br>
+        - Build the project and start C-SPY.</p>
+        <p><strong>How it works:<br>
+        </strong>When loaded into C-SPY, the TIMER.MAC will start
+        by setting breakpoints at - TCON that will execute
+        function _edit_TCON(); - TMOD that will execute function
+        _edit_TMOD(); It also sets a 4 byte wide breakpoint
+        starting at TL0. This breakpoint will cover TL0, TH0, TL1,
+        and TH1, and will execute the function _edit_TH_TL() when hit.
+        Finally, it also sets breakpoints at:</p>
+        <p><font face="Courier New">Timer0_int , </font>that will
+        execute the function<font face="Courier New"> _check_timer( 0
+        );<br>
+        Timer1_int , </font>that will execute the function<font
+        face="Courier New"> _check_timer( 1 );<br>
+        </font><br>
+        For more information about the C-SPY macro functions,
+        please read the description below.</p>
+        <p><strong>The C source file:<br>
+        </strong>The TIMER.C file only consists of the main()
+        function.</p>
+        <p>First, the TRx is set to zero. This will enable the
+        timer until we have set the proper values in the timer-control SFRs.
+	Then, we set the timer values. In this
+        example, we set up timer 0 in mode 1, and timer 1 in mode 2.<br>
+        <font face="Courier New">TMOD = 0x21;<br>
+        </font><br>
+        We also load the TLx and THx SFRs with the timer count
+        for our selected timers. To do this, we use the C macro
+        define GTV_Mm, where m is the mode.<br>
+        <font face="Courier New">tmp = GTV_M1( arr[cnt--] );<br>
+        TL0 = 0xFF &amp; tmp;<br>
+        TH0 = 0xFF &amp; (tmp&gt;&gt;8);<br>
+        </font>and<br>
+        <font face="Courier New">tmp = GTV_M2( arr2[cnt2--] );<br>
+        TL1 = 0xFF &amp; tmp;<br>
+        TH1 = 0xFF &amp; tmp;<br>
+        </font><br>
+        Now, we enable timer 0, timer 1, and the global interrupt.<br>
+        <font face="Courier New">ET0 = 1;<br>
+        ET1 = 1;<br>
+        EA = 1;<br>
+        </font><br>
+        Finally, we enable the timers to start the timer simulation.<br>
+        <font face="Courier New">TR0 = 1; /* Start timer 0. */<br>
+        TR1 = 1; /* Start timer 1. */<br>
+        </font><br>
+        <br>
+        <strong>The C-SPY macro file<br>
+        </strong>TIMER.MAC consists of eight different functions:</p>
+        <p>_newInterrupt(timer,mode,spec)<br>
+        Cancels old interrupts, and orders a new one for the timer
+        and mode selected. It checks the TLx and THx values to
+        determine the interrupt time. The spec parameter is set
+        if timer 1 runs in mode 3.</p>
+        <p>_updateCounter(TL,TH,mode,cnt,tl,th)<br>
+        Updates the TLx and THx values when changes have been
+        done to the timer settings.</p>
+        <p>_edit_TCON()<br>
+        Updates timers when a new value has been written to the
+        TCON sfr.</p>
+        <p>_edit_TMOD()<br>
+        Updates timers when a new value has been written to the
+        TMOD sfr.</p>
+        <p>_edit_TH_TL()<br>
+        Updates timers when a new value has been written to the
+        TLx or THx sfr.</p>
+        <p>_check_timer( timer )<br>
+        Called when timer interrupts occur. Checks the timer
+        settings to see if a new interrupt time should be set for
+        the timer.</p>
+        <p>execUserSetup()<br>
+        On setup the breakpoints are set at TCON, TMOD, TL0, TH0,
+        TL1, TH1, Timer0_int, and Timer1_int.</p>
+        <p>execUserReset()<br>
+        On reset, all current interrupts are canceled.</p>
+    </li>
+</dir>
+
+<dir>
+    <li><h4>Timer 0 mode 2</h4>
+        <p><strong>Files included in this project:<br>
+        </strong>- timer0m2.c<br>
+        - timer0m2.mac</p>
+        <p><strong>Building the project:<br>
+        </strong>- Create a new, empty project in the IAR Embedded
+        Workbench.<br>
+        - Include the TIMER0M2.C file in the project.<br>
+        - In the project option, C-SPY category, use the TIMER0M2.MAC
+        file as setup file.<br>
+        - Build the project and start C-SPY.</p>
+        <p><strong>How it works:</strong><br>
+        This is a very simple example of how to use the C-SPY
+        macro language. The C source only enables the timer 0
+        interrupt, and starts running in a while( 1 ) loop. The C-SPY
+        macro file will do all the work as the timer setup and
+        timer simulator.</p>
+        <p>The TIMER0M2.MAC file consists of nine functions.</p>
+        <p>_timer0Mode2()<br>
+        Reloads TL0 with TH0 and orders a new interrupt.</p>
+        <p>_timerSetBreakpoints()<br>
+        Sets a breakpoint at the timer_interrupt() function.</p>
+        <p>_initTimer0Mode2()<br>
+        Initializes TL0 and TH0, and sets the TR0 bit in the TCON sfr.</p>
+        <p>_timerInit()<br>
+        Initializes the timer simulation.</p>
+        <p>_timerShutdown()<br>
+        Cancels all interrupts and breakpoints.</p>
+        <p>execUserInit()<br>
+        Called at C-SPY initialization.</p>
+        <p>execUserSetup()<br>
+        Called at C-SPY setup.</p>
+        <p>execUserReset()<br>
+        Called at C-SPY reset.</p>
+        <p>execUserExit()<br>
+        Called at C-SPY exit.</p>
+    </li>
+</dir>
+
+<p><font size="2">Copyright 2001 IAR Systems. All rights reserved.</font>
+</p>
+</body>
+</html>
