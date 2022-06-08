@@ -4,7 +4,7 @@
 #include "core_8051.h"
 #include "sram.h"
 #include "Xram.h"
-#include "FIR_asic.h"
+#include "morse.h"
 
 SC_MODULE(top)
 {
@@ -51,7 +51,7 @@ sc_signal<sc_uint<1> > has_reset;
 	SC_CTOR(top)
 	{	    
 		
-		asic1=new FIR_asic("FIR_asic");
+		asic1=new morse("morse");
 		asic1->clk      ( clk    );
 		asic1->reset    ( reset  );
 		asic1->A        ( port0o ); 
