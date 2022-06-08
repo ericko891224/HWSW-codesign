@@ -12,9 +12,11 @@ int main(void){
 	
 	init();
 	
-	for(i=0;i<10;i++){
+	for(i=0;i<26;i++){
 		P3 = 1;
 		P0 = i;
+		P2 = 1;
+		while (P2) {}
 		P3 = 0;
 	}
 }

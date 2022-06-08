@@ -39,7 +39,7 @@ sc_signal<sc_uint<1> > has_reset;
 
 
 	
-	FIR_asic  *asic1;
+	morse  *morse1;
 
 
 	core_8051	*core;
@@ -51,13 +51,13 @@ sc_signal<sc_uint<1> > has_reset;
 	SC_CTOR(top)
 	{	    
 		
-		asic1=new morse("morse");
-		asic1->clk      ( clk    );
-		asic1->reset    ( reset  );
-		asic1->A        ( port0o ); 
-		asic1->B        ( port3o );
-		asic1->C        ( port2i );
-		asic1->D        ( port1i );
+		morse1=new morse("morse");
+		morse1->clk      ( clk    );
+		morse1->reset    ( reset  );
+		morse1->A_        ( port0o ); 
+		morse1->B_        ( port3o );
+		morse1->C_        ( port2i );
+		morse1->D_        ( port1i );
 		
 
 	    core=new core_8051("core");

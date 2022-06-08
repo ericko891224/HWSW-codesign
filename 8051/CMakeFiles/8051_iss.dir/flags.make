@@ -6,5 +6,5 @@ CXX_FLAGS =   -pthread -std=gnu++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/E:/systemc-2.3.3/SystemC/include -isystem /mnt/c/Users/user/Desktop/systemc-2.3.3/systemc-2.3.3/src 
+CXX_INCLUDES = -I/mnt/c/Users/user/Desktop/HWSW-codesign/8051/E:/systemc-2.3.3/SystemC/include -isystem /mnt/c/Users/user/Desktop/systemc-2.3.3/systemc-2.3.3/src 
 

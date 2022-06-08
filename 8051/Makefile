@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051
+CMAKE_SOURCE_DIR = /mnt/c/Users/user/Desktop/HWSW-codesign/8051
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051
+CMAKE_BINARY_DIR = /mnt/c/Users/user/Desktop/HWSW-codesign/8051
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/CMakeFiles /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/user/Desktop/HWSW-codesign/8051/CMakeFiles /mnt/c/Users/user/Desktop/HWSW-codesign/8051/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/user/Desktop/HWSW-codesign/8051/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -149,33 +149,6 @@ depend:
 8051_iss.cpp.s:
 	$(MAKE) -f CMakeFiles/8051_iss.dir/build.make CMakeFiles/8051_iss.dir/8051_iss.cpp.s
 .PHONY : 8051_iss.cpp.s
-
-FIR_asic.o: FIR_asic.cpp.o
-
-.PHONY : FIR_asic.o
-
-# target to build an object file
-FIR_asic.cpp.o:
-	$(MAKE) -f CMakeFiles/8051_iss.dir/build.make CMakeFiles/8051_iss.dir/FIR_asic.cpp.o
-.PHONY : FIR_asic.cpp.o
-
-FIR_asic.i: FIR_asic.cpp.i
-
-.PHONY : FIR_asic.i
-
-# target to preprocess a source file
-FIR_asic.cpp.i:
-	$(MAKE) -f CMakeFiles/8051_iss.dir/build.make CMakeFiles/8051_iss.dir/FIR_asic.cpp.i
-.PHONY : FIR_asic.cpp.i
-
-FIR_asic.s: FIR_asic.cpp.s
-
-.PHONY : FIR_asic.s
-
-# target to generate assembly for a file
-FIR_asic.cpp.s:
-	$(MAKE) -f CMakeFiles/8051_iss.dir/build.make CMakeFiles/8051_iss.dir/FIR_asic.cpp.s
-.PHONY : FIR_asic.cpp.s
 
 Xram.o: Xram.cpp.o
 
@@ -339,6 +312,33 @@ matrix.cpp.s:
 	$(MAKE) -f CMakeFiles/8051_iss.dir/build.make CMakeFiles/8051_iss.dir/matrix.cpp.s
 .PHONY : matrix.cpp.s
 
+morse.o: morse.cpp.o
+
+.PHONY : morse.o
+
+# target to build an object file
+morse.cpp.o:
+	$(MAKE) -f CMakeFiles/8051_iss.dir/build.make CMakeFiles/8051_iss.dir/morse.cpp.o
+.PHONY : morse.cpp.o
+
+morse.i: morse.cpp.i
+
+.PHONY : morse.i
+
+# target to preprocess a source file
+morse.cpp.i:
+	$(MAKE) -f CMakeFiles/8051_iss.dir/build.make CMakeFiles/8051_iss.dir/morse.cpp.i
+.PHONY : morse.cpp.i
+
+morse.s: morse.cpp.s
+
+.PHONY : morse.s
+
+# target to generate assembly for a file
+morse.cpp.s:
+	$(MAKE) -f CMakeFiles/8051_iss.dir/build.make CMakeFiles/8051_iss.dir/morse.cpp.s
+.PHONY : morse.cpp.s
+
 op_bytes.o: op_bytes.cpp.o
 
 .PHONY : op_bytes.o
@@ -459,9 +459,6 @@ help:
 	@echo "... 8051_iss.o"
 	@echo "... 8051_iss.i"
 	@echo "... 8051_iss.s"
-	@echo "... FIR_asic.o"
-	@echo "... FIR_asic.i"
-	@echo "... FIR_asic.s"
 	@echo "... Xram.o"
 	@echo "... Xram.i"
 	@echo "... Xram.s"
@@ -480,6 +477,9 @@ help:
 	@echo "... matrix.o"
 	@echo "... matrix.i"
 	@echo "... matrix.s"
+	@echo "... morse.o"
+	@echo "... morse.i"
+	@echo "... morse.s"
 	@echo "... op_bytes.o"
 	@echo "... op_bytes.i"
 	@echo "... op_bytes.s"

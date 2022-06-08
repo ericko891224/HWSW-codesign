@@ -1,3 +1,3 @@
-/mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/CMakeFiles/rebuild_cache.dir
-/mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/CMakeFiles/edit_cache.dir
-/mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/CMakeFiles/8051_iss.dir
+/mnt/c/Users/user/Desktop/HWSW-codesign/8051/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/user/Desktop/HWSW-codesign/8051/CMakeFiles/edit_cache.dir
+/mnt/c/Users/user/Desktop/HWSW-codesign/8051/CMakeFiles/8051_iss.dir

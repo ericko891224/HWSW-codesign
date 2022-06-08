@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051
+CMAKE_SOURCE_DIR = /mnt/c/Users/user/Desktop/HWSW-codesign/8051
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051
+CMAKE_BINARY_DIR = /mnt/c/Users/user/Desktop/HWSW-codesign/8051
 
 # Include any dependencies generated for this target.
 include CMakeFiles/8051_iss.dir/depend.make
@@ -59,170 +59,170 @@ include CMakeFiles/8051_iss.dir/flags.make
 
 CMakeFiles/8051_iss.dir/8051_iss.cpp.o: CMakeFiles/8051_iss.dir/flags.make
 CMakeFiles/8051_iss.dir/8051_iss.cpp.o: 8051_iss.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/8051_iss.dir/8051_iss.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/8051_iss.dir/8051_iss.cpp.o -c /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/8051_iss.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/user/Desktop/HWSW-codesign/8051/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/8051_iss.dir/8051_iss.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/8051_iss.dir/8051_iss.cpp.o -c /mnt/c/Users/user/Desktop/HWSW-codesign/8051/8051_iss.cpp
 
 CMakeFiles/8051_iss.dir/8051_iss.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/8051_iss.dir/8051_iss.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/8051_iss.cpp > CMakeFiles/8051_iss.dir/8051_iss.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/user/Desktop/HWSW-codesign/8051/8051_iss.cpp > CMakeFiles/8051_iss.dir/8051_iss.cpp.i
 
 CMakeFiles/8051_iss.dir/8051_iss.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/8051_iss.dir/8051_iss.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/8051_iss.cpp -o CMakeFiles/8051_iss.dir/8051_iss.cpp.s
-
-CMakeFiles/8051_iss.dir/FIR_asic.cpp.o: CMakeFiles/8051_iss.dir/flags.make
-CMakeFiles/8051_iss.dir/FIR_asic.cpp.o: FIR_asic.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/8051_iss.dir/FIR_asic.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/8051_iss.dir/FIR_asic.cpp.o -c /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/FIR_asic.cpp
-
-CMakeFiles/8051_iss.dir/FIR_asic.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/8051_iss.dir/FIR_asic.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/FIR_asic.cpp > CMakeFiles/8051_iss.dir/FIR_asic.cpp.i
-
-CMakeFiles/8051_iss.dir/FIR_asic.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/8051_iss.dir/FIR_asic.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/FIR_asic.cpp -o CMakeFiles/8051_iss.dir/FIR_asic.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/user/Desktop/HWSW-codesign/8051/8051_iss.cpp -o CMakeFiles/8051_iss.dir/8051_iss.cpp.s
 
 CMakeFiles/8051_iss.dir/Xram.cpp.o: CMakeFiles/8051_iss.dir/flags.make
 CMakeFiles/8051_iss.dir/Xram.cpp.o: Xram.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/8051_iss.dir/Xram.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/8051_iss.dir/Xram.cpp.o -c /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/Xram.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/user/Desktop/HWSW-codesign/8051/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/8051_iss.dir/Xram.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/8051_iss.dir/Xram.cpp.o -c /mnt/c/Users/user/Desktop/HWSW-codesign/8051/Xram.cpp
 
 CMakeFiles/8051_iss.dir/Xram.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/8051_iss.dir/Xram.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/Xram.cpp > CMakeFiles/8051_iss.dir/Xram.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/user/Desktop/HWSW-codesign/8051/Xram.cpp > CMakeFiles/8051_iss.dir/Xram.cpp.i
 
 CMakeFiles/8051_iss.dir/Xram.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/8051_iss.dir/Xram.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/Xram.cpp -o CMakeFiles/8051_iss.dir/Xram.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/user/Desktop/HWSW-codesign/8051/Xram.cpp -o CMakeFiles/8051_iss.dir/Xram.cpp.s
 
 CMakeFiles/8051_iss.dir/core_8051.cpp.o: CMakeFiles/8051_iss.dir/flags.make
 CMakeFiles/8051_iss.dir/core_8051.cpp.o: core_8051.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/8051_iss.dir/core_8051.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/8051_iss.dir/core_8051.cpp.o -c /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/core_8051.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/user/Desktop/HWSW-codesign/8051/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/8051_iss.dir/core_8051.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/8051_iss.dir/core_8051.cpp.o -c /mnt/c/Users/user/Desktop/HWSW-codesign/8051/core_8051.cpp
 
 CMakeFiles/8051_iss.dir/core_8051.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/8051_iss.dir/core_8051.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/core_8051.cpp > CMakeFiles/8051_iss.dir/core_8051.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/user/Desktop/HWSW-codesign/8051/core_8051.cpp > CMakeFiles/8051_iss.dir/core_8051.cpp.i
 
 CMakeFiles/8051_iss.dir/core_8051.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/8051_iss.dir/core_8051.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/core_8051.cpp -o CMakeFiles/8051_iss.dir/core_8051.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/user/Desktop/HWSW-codesign/8051/core_8051.cpp -o CMakeFiles/8051_iss.dir/core_8051.cpp.s
 
 CMakeFiles/8051_iss.dir/creg.cpp.o: CMakeFiles/8051_iss.dir/flags.make
 CMakeFiles/8051_iss.dir/creg.cpp.o: creg.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/8051_iss.dir/creg.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/8051_iss.dir/creg.cpp.o -c /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/creg.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/user/Desktop/HWSW-codesign/8051/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/8051_iss.dir/creg.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/8051_iss.dir/creg.cpp.o -c /mnt/c/Users/user/Desktop/HWSW-codesign/8051/creg.cpp
 
 CMakeFiles/8051_iss.dir/creg.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/8051_iss.dir/creg.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/creg.cpp > CMakeFiles/8051_iss.dir/creg.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/user/Desktop/HWSW-codesign/8051/creg.cpp > CMakeFiles/8051_iss.dir/creg.cpp.i
 
 CMakeFiles/8051_iss.dir/creg.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/8051_iss.dir/creg.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/creg.cpp -o CMakeFiles/8051_iss.dir/creg.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/user/Desktop/HWSW-codesign/8051/creg.cpp -o CMakeFiles/8051_iss.dir/creg.cpp.s
 
 CMakeFiles/8051_iss.dir/keyboard.cpp.o: CMakeFiles/8051_iss.dir/flags.make
 CMakeFiles/8051_iss.dir/keyboard.cpp.o: keyboard.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/8051_iss.dir/keyboard.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/8051_iss.dir/keyboard.cpp.o -c /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/keyboard.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/user/Desktop/HWSW-codesign/8051/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/8051_iss.dir/keyboard.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/8051_iss.dir/keyboard.cpp.o -c /mnt/c/Users/user/Desktop/HWSW-codesign/8051/keyboard.cpp
 
 CMakeFiles/8051_iss.dir/keyboard.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/8051_iss.dir/keyboard.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/keyboard.cpp > CMakeFiles/8051_iss.dir/keyboard.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/user/Desktop/HWSW-codesign/8051/keyboard.cpp > CMakeFiles/8051_iss.dir/keyboard.cpp.i
 
 CMakeFiles/8051_iss.dir/keyboard.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/8051_iss.dir/keyboard.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/keyboard.cpp -o CMakeFiles/8051_iss.dir/keyboard.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/user/Desktop/HWSW-codesign/8051/keyboard.cpp -o CMakeFiles/8051_iss.dir/keyboard.cpp.s
 
 CMakeFiles/8051_iss.dir/keyboardcontroller.cpp.o: CMakeFiles/8051_iss.dir/flags.make
 CMakeFiles/8051_iss.dir/keyboardcontroller.cpp.o: keyboardcontroller.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/8051_iss.dir/keyboardcontroller.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/8051_iss.dir/keyboardcontroller.cpp.o -c /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/keyboardcontroller.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/user/Desktop/HWSW-codesign/8051/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/8051_iss.dir/keyboardcontroller.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/8051_iss.dir/keyboardcontroller.cpp.o -c /mnt/c/Users/user/Desktop/HWSW-codesign/8051/keyboardcontroller.cpp
 
 CMakeFiles/8051_iss.dir/keyboardcontroller.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/8051_iss.dir/keyboardcontroller.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/keyboardcontroller.cpp > CMakeFiles/8051_iss.dir/keyboardcontroller.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/user/Desktop/HWSW-codesign/8051/keyboardcontroller.cpp > CMakeFiles/8051_iss.dir/keyboardcontroller.cpp.i
 
 CMakeFiles/8051_iss.dir/keyboardcontroller.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/8051_iss.dir/keyboardcontroller.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/keyboardcontroller.cpp -o CMakeFiles/8051_iss.dir/keyboardcontroller.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/user/Desktop/HWSW-codesign/8051/keyboardcontroller.cpp -o CMakeFiles/8051_iss.dir/keyboardcontroller.cpp.s
 
 CMakeFiles/8051_iss.dir/matrix.cpp.o: CMakeFiles/8051_iss.dir/flags.make
 CMakeFiles/8051_iss.dir/matrix.cpp.o: matrix.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/8051_iss.dir/matrix.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/8051_iss.dir/matrix.cpp.o -c /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/matrix.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/user/Desktop/HWSW-codesign/8051/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/8051_iss.dir/matrix.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/8051_iss.dir/matrix.cpp.o -c /mnt/c/Users/user/Desktop/HWSW-codesign/8051/matrix.cpp
 
 CMakeFiles/8051_iss.dir/matrix.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/8051_iss.dir/matrix.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/matrix.cpp > CMakeFiles/8051_iss.dir/matrix.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/user/Desktop/HWSW-codesign/8051/matrix.cpp > CMakeFiles/8051_iss.dir/matrix.cpp.i
 
 CMakeFiles/8051_iss.dir/matrix.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/8051_iss.dir/matrix.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/matrix.cpp -o CMakeFiles/8051_iss.dir/matrix.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/user/Desktop/HWSW-codesign/8051/matrix.cpp -o CMakeFiles/8051_iss.dir/matrix.cpp.s
+
+CMakeFiles/8051_iss.dir/morse.cpp.o: CMakeFiles/8051_iss.dir/flags.make
+CMakeFiles/8051_iss.dir/morse.cpp.o: morse.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/user/Desktop/HWSW-codesign/8051/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/8051_iss.dir/morse.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/8051_iss.dir/morse.cpp.o -c /mnt/c/Users/user/Desktop/HWSW-codesign/8051/morse.cpp
+
+CMakeFiles/8051_iss.dir/morse.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/8051_iss.dir/morse.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/user/Desktop/HWSW-codesign/8051/morse.cpp > CMakeFiles/8051_iss.dir/morse.cpp.i
+
+CMakeFiles/8051_iss.dir/morse.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/8051_iss.dir/morse.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/user/Desktop/HWSW-codesign/8051/morse.cpp -o CMakeFiles/8051_iss.dir/morse.cpp.s
 
 CMakeFiles/8051_iss.dir/op_bytes.cpp.o: CMakeFiles/8051_iss.dir/flags.make
 CMakeFiles/8051_iss.dir/op_bytes.cpp.o: op_bytes.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/8051_iss.dir/op_bytes.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/8051_iss.dir/op_bytes.cpp.o -c /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/op_bytes.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/user/Desktop/HWSW-codesign/8051/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/8051_iss.dir/op_bytes.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/8051_iss.dir/op_bytes.cpp.o -c /mnt/c/Users/user/Desktop/HWSW-codesign/8051/op_bytes.cpp
 
 CMakeFiles/8051_iss.dir/op_bytes.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/8051_iss.dir/op_bytes.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/op_bytes.cpp > CMakeFiles/8051_iss.dir/op_bytes.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/user/Desktop/HWSW-codesign/8051/op_bytes.cpp > CMakeFiles/8051_iss.dir/op_bytes.cpp.i
 
 CMakeFiles/8051_iss.dir/op_bytes.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/8051_iss.dir/op_bytes.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/op_bytes.cpp -o CMakeFiles/8051_iss.dir/op_bytes.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/user/Desktop/HWSW-codesign/8051/op_bytes.cpp -o CMakeFiles/8051_iss.dir/op_bytes.cpp.s
 
 CMakeFiles/8051_iss.dir/periph.cpp.o: CMakeFiles/8051_iss.dir/flags.make
 CMakeFiles/8051_iss.dir/periph.cpp.o: periph.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/8051_iss.dir/periph.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/8051_iss.dir/periph.cpp.o -c /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/periph.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/user/Desktop/HWSW-codesign/8051/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/8051_iss.dir/periph.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/8051_iss.dir/periph.cpp.o -c /mnt/c/Users/user/Desktop/HWSW-codesign/8051/periph.cpp
 
 CMakeFiles/8051_iss.dir/periph.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/8051_iss.dir/periph.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/periph.cpp > CMakeFiles/8051_iss.dir/periph.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/user/Desktop/HWSW-codesign/8051/periph.cpp > CMakeFiles/8051_iss.dir/periph.cpp.i
 
 CMakeFiles/8051_iss.dir/periph.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/8051_iss.dir/periph.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/periph.cpp -o CMakeFiles/8051_iss.dir/periph.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/user/Desktop/HWSW-codesign/8051/periph.cpp -o CMakeFiles/8051_iss.dir/periph.cpp.s
 
 CMakeFiles/8051_iss.dir/sram.cpp.o: CMakeFiles/8051_iss.dir/flags.make
 CMakeFiles/8051_iss.dir/sram.cpp.o: sram.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/8051_iss.dir/sram.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/8051_iss.dir/sram.cpp.o -c /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/sram.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/user/Desktop/HWSW-codesign/8051/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/8051_iss.dir/sram.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/8051_iss.dir/sram.cpp.o -c /mnt/c/Users/user/Desktop/HWSW-codesign/8051/sram.cpp
 
 CMakeFiles/8051_iss.dir/sram.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/8051_iss.dir/sram.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/sram.cpp > CMakeFiles/8051_iss.dir/sram.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/user/Desktop/HWSW-codesign/8051/sram.cpp > CMakeFiles/8051_iss.dir/sram.cpp.i
 
 CMakeFiles/8051_iss.dir/sram.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/8051_iss.dir/sram.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/sram.cpp -o CMakeFiles/8051_iss.dir/sram.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/user/Desktop/HWSW-codesign/8051/sram.cpp -o CMakeFiles/8051_iss.dir/sram.cpp.s
 
 CMakeFiles/8051_iss.dir/top.cpp.o: CMakeFiles/8051_iss.dir/flags.make
 CMakeFiles/8051_iss.dir/top.cpp.o: top.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/8051_iss.dir/top.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/8051_iss.dir/top.cpp.o -c /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/top.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/user/Desktop/HWSW-codesign/8051/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/8051_iss.dir/top.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/8051_iss.dir/top.cpp.o -c /mnt/c/Users/user/Desktop/HWSW-codesign/8051/top.cpp
 
 CMakeFiles/8051_iss.dir/top.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/8051_iss.dir/top.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/top.cpp > CMakeFiles/8051_iss.dir/top.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/user/Desktop/HWSW-codesign/8051/top.cpp > CMakeFiles/8051_iss.dir/top.cpp.i
 
 CMakeFiles/8051_iss.dir/top.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/8051_iss.dir/top.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/top.cpp -o CMakeFiles/8051_iss.dir/top.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/user/Desktop/HWSW-codesign/8051/top.cpp -o CMakeFiles/8051_iss.dir/top.cpp.s
 
 # Object files for target 8051_iss
 8051_iss_OBJECTS = \
 "CMakeFiles/8051_iss.dir/8051_iss.cpp.o" \
-"CMakeFiles/8051_iss.dir/FIR_asic.cpp.o" \
 "CMakeFiles/8051_iss.dir/Xram.cpp.o" \
 "CMakeFiles/8051_iss.dir/core_8051.cpp.o" \
 "CMakeFiles/8051_iss.dir/creg.cpp.o" \
 "CMakeFiles/8051_iss.dir/keyboard.cpp.o" \
 "CMakeFiles/8051_iss.dir/keyboardcontroller.cpp.o" \
 "CMakeFiles/8051_iss.dir/matrix.cpp.o" \
+"CMakeFiles/8051_iss.dir/morse.cpp.o" \
 "CMakeFiles/8051_iss.dir/op_bytes.cpp.o" \
 "CMakeFiles/8051_iss.dir/periph.cpp.o" \
 "CMakeFiles/8051_iss.dir/sram.cpp.o" \
@@ -232,13 +232,13 @@ CMakeFiles/8051_iss.dir/top.cpp.s: cmake_force
 8051_iss_EXTERNAL_OBJECTS =
 
 8051_iss: CMakeFiles/8051_iss.dir/8051_iss.cpp.o
-8051_iss: CMakeFiles/8051_iss.dir/FIR_asic.cpp.o
 8051_iss: CMakeFiles/8051_iss.dir/Xram.cpp.o
 8051_iss: CMakeFiles/8051_iss.dir/core_8051.cpp.o
 8051_iss: CMakeFiles/8051_iss.dir/creg.cpp.o
 8051_iss: CMakeFiles/8051_iss.dir/keyboard.cpp.o
 8051_iss: CMakeFiles/8051_iss.dir/keyboardcontroller.cpp.o
 8051_iss: CMakeFiles/8051_iss.dir/matrix.cpp.o
+8051_iss: CMakeFiles/8051_iss.dir/morse.cpp.o
 8051_iss: CMakeFiles/8051_iss.dir/op_bytes.cpp.o
 8051_iss: CMakeFiles/8051_iss.dir/periph.cpp.o
 8051_iss: CMakeFiles/8051_iss.dir/sram.cpp.o
@@ -246,7 +246,7 @@ CMakeFiles/8051_iss.dir/top.cpp.s: cmake_force
 8051_iss: CMakeFiles/8051_iss.dir/build.make
 8051_iss: /mnt/c/Users/user/Desktop/systemc-2.3.3/systemc-2.3.3/buildDebug/src/libsystemc”-d”.so.2.3.3
 8051_iss: CMakeFiles/8051_iss.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable 8051_iss"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Users/user/Desktop/HWSW-codesign/8051/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable 8051_iss"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/8051_iss.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -259,6 +259,6 @@ CMakeFiles/8051_iss.dir/clean:
 .PHONY : CMakeFiles/8051_iss.dir/clean
 
 CMakeFiles/8051_iss.dir/depend:
-	cd /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051 && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051 /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051 /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051 /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051 /mnt/c/Users/user/Desktop/SystemC_EX2_8051/8051/CMakeFiles/8051_iss.dir/DependInfo.cmake --color=$(COLOR)
+	cd /mnt/c/Users/user/Desktop/HWSW-codesign/8051 && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mnt/c/Users/user/Desktop/HWSW-codesign/8051 /mnt/c/Users/user/Desktop/HWSW-codesign/8051 /mnt/c/Users/user/Desktop/HWSW-codesign/8051 /mnt/c/Users/user/Desktop/HWSW-codesign/8051 /mnt/c/Users/user/Desktop/HWSW-codesign/8051/CMakeFiles/8051_iss.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/8051_iss.dir/depend
 
