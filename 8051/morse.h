@@ -61,10 +61,13 @@ SC_MODULE(morse)
 				D_.write(1);
 				wait();
 				wait();
+				wait();
 			}
 			D_.write(0);
 			wait();
+			
 		}
+		wait();
 		C_.write(0);
 		wait();
 		return true;
@@ -75,18 +78,18 @@ SC_MODULE(morse)
 
 		while(1){
 			// if (!B_.read()) {
-				cout << "in" << endl;
+			// cout << "in" << endl;
 			// wait();
 			C_.write(1);
-			cout<<"A: "<<A_.read()<<", B: "<<B_.read()<<", C: "<<C_.read()<<", D: "<<D_.read()<<"\n";			
+			// cout<<"A: "<<A_.read()<<", B: "<<B_.read()<<", C: "<<C_.read()<<", D: "<<D_.read()<<"\n";			
 			morse_input=(int)A_.read();
 			switch(morse_input){
 				case A:				// .-
-						cout << "A" << endl;
+						// cout << "A" << endl;
 						morse_encode({0,1});
 						break;
 				case B: 			// -...
-						cout << "B" << endl;
+						// cout << "B" << endl;
 						morse_encode({1, 0, 0, 0});
 						break;
 				case C: 			// -.-.
@@ -164,6 +167,10 @@ SC_MODULE(morse)
 				default:
 						C_.write(0);
 						wait();
+						wait();						
+						wait();
+						wait();
+
 						break;
 			}
 			// }
