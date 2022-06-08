@@ -3,6 +3,34 @@
 #include "systemc.h"
 #include <stdio.h>
 
+typedef enum{
+    A = 0,
+    B,
+    C,
+    D,
+	E,
+	F,
+	G,
+	H,
+	I,
+	J,
+	K,
+	L,
+	M,
+	N,
+	O,
+	P,
+	Q,
+	R,
+	S,
+	T,
+	U,
+	V,
+	W,
+	X,
+	Y,
+	Z
+}morse_library;
 
 SC_MODULE(morse)
 {
@@ -21,8 +49,62 @@ SC_MODULE(morse)
 	}
 	void behavior() {
 		C.write(0);
-		while(1) {
-			wait();
+		morse_library morse_input;
+		morse_input=A;
+		switch(morse_input){
+			case A:	
+					break;
+			case B: 
+					break;
+			case C: 
+					break;
+			case D: 
+					break;
+			case E: 
+					break;
+			case F: 
+					break;
+			case G: 
+					break;
+			case H: 
+					break;
+			case I: 
+					break;
+			case J: 
+					break;
+			case K: 
+					break;
+			case L: 
+					break;
+			case M: 
+					break;
+			case N: 
+					break;
+			case O: 
+					break;
+			case P: 
+					break;
+			case Q: 
+					break;
+			case R: 
+					break;
+			case S: 
+					break;
+			case T: 
+					break;
+			case U: 
+					break;
+			case V: 
+					break;
+			case W: 
+					break;
+			case X: 
+					break;
+			case Y: 
+					break;
+			case Z: 
+					break;
+			default:;
 		}
 	}
 };
